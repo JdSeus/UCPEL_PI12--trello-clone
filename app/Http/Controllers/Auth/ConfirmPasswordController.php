@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ConfirmsPasswords;
 
+use Illuminate\Support\Facades\Auth;
+
 class ConfirmPasswordController extends Controller
 {
     /*
@@ -35,6 +37,16 @@ class ConfirmPasswordController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:client');
+    }
+
+    public function broker()
+    {
+        return Password::broker('clients');
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('client');
     }
 }
