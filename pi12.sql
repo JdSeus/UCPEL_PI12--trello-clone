@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Nov-2022 às 02:19
+-- Tempo de geração: 08-Nov-2022 às 02:27
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -227,19 +227,19 @@ CREATE TABLE `menu_items` (
 --
 
 INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class`, `color`, `parent_id`, `order`, `created_at`, `updated_at`, `route`, `parameters`) VALUES
-(1, 1, 'Dashboard', '', '_self', 'voyager-boat', NULL, NULL, 1, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.dashboard', NULL),
-(2, 1, 'Media', '', '_self', 'voyager-images', NULL, NULL, 5, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.media.index', NULL),
-(3, 1, 'Users', '', '_self', 'voyager-person', NULL, NULL, 3, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.users.index', NULL),
-(4, 1, 'Roles', '', '_self', 'voyager-lock', NULL, NULL, 2, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.roles.index', NULL),
-(5, 1, 'Tools', '', '_self', 'voyager-tools', NULL, NULL, 9, '2022-11-08 04:16:25', '2022-11-08 04:16:25', NULL, NULL),
-(6, 1, 'Menu Builder', '', '_self', 'voyager-list', NULL, 5, 10, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.menus.index', NULL),
-(7, 1, 'Database', '', '_self', 'voyager-data', NULL, 5, 11, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.database.index', NULL),
-(8, 1, 'Compass', '', '_self', 'voyager-compass', NULL, 5, 12, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.compass.index', NULL),
-(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 13, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.bread.index', NULL),
-(10, 1, 'Settings', '', '_self', 'voyager-settings', NULL, NULL, 14, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.settings.index', NULL),
-(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 8, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.categories.index', NULL),
-(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 6, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.posts.index', NULL),
-(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 7, '2022-11-08 04:16:26', '2022-11-08 04:16:26', 'voyager.pages.index', NULL);
+(1, 1, 'Painel Administrativo', '', '_self', 'voyager-boat', NULL, NULL, 1, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.dashboard', NULL),
+(2, 1, 'Mídia', '', '_self', 'voyager-images', NULL, NULL, 4, '2022-11-08 04:16:25', '2022-11-08 01:27:23', 'voyager.media.index', NULL),
+(3, 1, 'Usuários', '', '_self', 'voyager-person', NULL, NULL, 3, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.users.index', NULL),
+(4, 1, 'Funções', '', '_self', 'voyager-lock', NULL, NULL, 2, '2022-11-08 04:16:25', '2022-11-08 04:16:25', 'voyager.roles.index', NULL),
+(5, 1, 'Ferramentas', '', '_self', 'voyager-tools', NULL, NULL, 8, '2022-11-08 04:16:25', '2022-11-08 01:27:23', NULL, NULL),
+(6, 1, 'Construtor de Menu', '', '_self', 'voyager-list', NULL, 5, 1, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.menus.index', NULL),
+(7, 1, 'Base de Dados', '', '_self', 'voyager-data', NULL, 5, 2, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.database.index', NULL),
+(8, 1, 'Bússola', '', '_self', 'voyager-compass', NULL, 5, 3, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.compass.index', NULL),
+(9, 1, 'BREAD', '', '_self', 'voyager-bread', NULL, 5, 4, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.bread.index', NULL),
+(10, 1, 'Configurações', '', '_self', 'voyager-settings', NULL, NULL, 9, '2022-11-08 04:16:26', '2022-11-08 01:27:26', 'voyager.settings.index', NULL),
+(11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 7, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.categories.index', NULL),
+(12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 5, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.posts.index', NULL),
+(13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 6, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.pages.index', NULL);
 
 -- --------------------------------------------------------
 
@@ -629,7 +629,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$SoUk0lsYHO87NN8ZwU3SDeiKT4mKL7ikwZKum.32xD4t4LSY3wD1K', '45rOSH4bHmnnCz1AmMkMiiS7Xt8k2GfAHHmuw5HIYA9Vqiz3HVdaccHGgrM3', NULL, '2022-11-08 04:16:26', '2022-11-08 04:16:26');
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$SoUk0lsYHO87NN8ZwU3SDeiKT4mKL7ikwZKum.32xD4t4LSY3wD1K', '45rOSH4bHmnnCz1AmMkMiiS7Xt8k2GfAHHmuw5HIYA9Vqiz3HVdaccHGgrM3', '{\"locale\":\"pt_br\"}', '2022-11-08 04:16:26', '2022-11-08 01:25:15');
 
 -- --------------------------------------------------------
 
