@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Nov-2022 às 02:27
+-- Tempo de geração: 09-Nov-2022 às 00:40
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -44,6 +44,31 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `parent_id`, `order`, `name`, `slug`, `created_at`, `updated_at`) VALUES
 (1, NULL, 1, 'Category 1', 'category-1', '2022-11-08 04:16:26', '2022-11-08 04:16:26'),
 (2, NULL, 1, 'Category 2', 'category-2', '2022-11-08 04:16:26', '2022-11-08 04:16:26');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `clients`
+--
+
+CREATE TABLE `clients` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `clients`
+--
+
+INSERT INTO `clients` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Teste', 'teste@teste.com', NULL, '$2y$10$r9WuFJpcYVJmDkMlOQdGFeJiNbbbovv0IXPmMIydNkiik9G5SWx/m', NULL, '2022-11-08 23:37:31', '2022-11-08 23:37:31', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,7 +310,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (25, '2016_01_01_000000_create_pages_table', 2),
 (26, '2016_01_01_000000_create_posts_table', 2),
 (27, '2016_02_15_204651_create_categories_table', 2),
-(28, '2017_04_11_000000_alter_post_nullable_fields_table', 2);
+(28, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
+(32, '2022_11_08_202640_create_clients_table', 3);
 
 -- --------------------------------------------------------
 
@@ -629,7 +655,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$SoUk0lsYHO87NN8ZwU3SDeiKT4mKL7ikwZKum.32xD4t4LSY3wD1K', '45rOSH4bHmnnCz1AmMkMiiS7Xt8k2GfAHHmuw5HIYA9Vqiz3HVdaccHGgrM3', '{\"locale\":\"pt_br\"}', '2022-11-08 04:16:26', '2022-11-08 01:25:15');
+(1, 1, 'Admin', 'admin@admin.com', 'users/default.png', NULL, '$2y$10$SoUk0lsYHO87NN8ZwU3SDeiKT4mKL7ikwZKum.32xD4t4LSY3wD1K', 'nvo4w750XXkSkWLWT3NtlKVFePfByddsV1VeVVomUUlNaPwQinVfT26ClsiZ', '{\"locale\":\"pt_br\"}', '2022-11-08 04:16:26', '2022-11-08 01:25:15');
 
 -- --------------------------------------------------------
 
@@ -653,6 +679,13 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `categories_slug_unique` (`slug`),
   ADD KEY `categories_parent_id_foreign` (`parent_id`);
+
+--
+-- Índices para tabela `clients`
+--
+ALTER TABLE `clients`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `clients_email_unique` (`email`);
 
 --
 -- Índices para tabela `data_rows`
@@ -787,6 +820,12 @@ ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `clients`
+--
+ALTER TABLE `clients`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT de tabela `data_rows`
 --
 ALTER TABLE `data_rows`
@@ -820,7 +859,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de tabela `pages`
