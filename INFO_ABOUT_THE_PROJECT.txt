@@ -1,0 +1,3 @@
+Admin Login on /admin is:
+admin@admin.com
+password
