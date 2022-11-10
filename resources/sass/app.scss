@@ -1,8 +1,39 @@
+@import '1vendor/vendor';
+
+@import '2base/reset';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import '3abstracts/variables';
+@import '3abstracts/mixins';
+
+@import '4layout/grid';
+
+@import '5themes/fonts';
+@import '5themes/theme';
+
+@import '6views/general';
+@import '6views/home';
+
+@import '7components/components';
+
+@import '8icons/icons';
+
+@import '3abstracts/utilities';
+
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
-// Variables
-@import 'variables';
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
