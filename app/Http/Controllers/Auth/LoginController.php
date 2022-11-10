@@ -23,11 +23,9 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+
     public function __construct()
     {
         $this->middleware('guest:client')->except('logout');
@@ -36,13 +34,11 @@ class LoginController extends Controller
     protected function guard()
     {
         return Auth::guard('client');
-    }
+    }    
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    public function showLoginForm()
+    {
+        return view('app.login');
+    }
 
 }

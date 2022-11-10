@@ -18,7 +18,14 @@ module.exports = {
       'fullhd': '1920px',
       'afterfullhd': '1921px'
     },
-    extend: {},
+    extend: {
+      boxShadow: {
+        'bootstrap': 'rgba(0, 0, 0, 0.15) 0px 0.5rem 1rem',
+      },
+      colors: {
+        'coolgray': '#dee2e6',
+      }
+    },
   },
   plugins: [],
 }
