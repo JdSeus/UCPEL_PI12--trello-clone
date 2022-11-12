@@ -16,4 +16,9 @@ class Board extends Model
         return $this->belongsToMany('App\Models\Client');
     }
 
+    public function columns()
+    {
+        return $this->hasMany('App\Models\Column');
+    }
+
 }

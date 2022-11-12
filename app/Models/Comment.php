@@ -16,4 +16,9 @@ class Comment extends Model
         return $this->belongsTo('App\Models\Client');
     }
 
+    public function card()
+    {
+        return $this->belongsTo('App\Models\Card');
+    }
+
 }
