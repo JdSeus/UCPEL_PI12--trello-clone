@@ -16,30 +16,30 @@
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Endereço de e-mail</label>
                     <div>
+                        @error('email')
+                            <span class="block text-red-600" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
                         <input id="email" type="email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
                         class="
                         shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
-                        @error('email')
-                            <span role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="password">Senha</label>
                     <div>
+                        @error('password')
+                            <span class="block text-red-600" role="alert">
+                                {{ $message }}
+                            </span>
+                        @enderror
                         <input id="password" type="password" name="password" required autocomplete="current-password"
                         class="
                         shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         >
-                        @error('password')
-                            <span role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                 </div>
 
