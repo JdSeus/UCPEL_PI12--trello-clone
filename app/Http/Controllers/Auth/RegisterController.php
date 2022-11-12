@@ -26,11 +26,9 @@ class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    protected $redirectTo = RouteServiceProvider::HOME;
+
+
     public function __construct()
     {
         $this->middleware('guest:client');
@@ -41,20 +39,6 @@ class RegisterController extends Controller
         return Auth::guard('client');
     }
 
-    /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -64,12 +48,6 @@ class RegisterController extends Controller
         ]);
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\Models\Client
-     */
     protected function create(array $data)
     {
         return Client::create([
@@ -77,5 +55,9 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+    }
+
+    public function showRegistrationForm() {
+        return view('app.register');
     }
 }
