@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2022 às 18:16
+-- Tempo de geração: 12-Nov-2022 às 18:28
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -101,6 +101,20 @@ INSERT INTO `clients` (`id`, `name`, `email`, `email_verified_at`, `password`, `
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `columns`
+--
+
+CREATE TABLE `columns` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `board_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `data_rows`
 --
 
@@ -184,7 +198,13 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (57, 8, 'title', 'text', 'Título', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:255\",\"messages\":{\"max\":\"O campo :attribute deve ter no m\\u00e1ximo :max caracteres.\"}}}', 3),
 (58, 8, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 4),
 (59, 8, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 5),
-(60, 8, 'board_belongstomany_client_relationship', 'relationship', 'Clientes', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Client\",\"table\":\"clients\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"board_client\",\"pivot\":\"1\",\"taggable\":\"0\"}', 2);
+(60, 8, 'board_belongstomany_client_relationship', 'relationship', 'Clientes', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Client\",\"table\":\"clients\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"board_client\",\"pivot\":\"1\",\"taggable\":\"0\"}', 2),
+(61, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
+(62, 10, 'board_id', 'text', 'Quadro', 0, 1, 1, 1, 1, 1, '{}', 2),
+(63, 10, 'title', 'text', 'Título', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:255\",\"messages\":{\"max\":\"O campo :attribute deve ter no m\\u00e1ximo :max caracteres.\"}}}', 4),
+(64, 10, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 5),
+(65, 10, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 6),
+(66, 10, 'column_belongsto_board_relationship', 'relationship', 'Quadro', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Board\",\"table\":\"boards\",\"type\":\"belongsTo\",\"column\":\"board_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3);
 
 -- --------------------------------------------------------
 
@@ -221,7 +241,8 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (4, 'categories', 'categories', 'Category', 'Categories', 'voyager-categories', 'TCG\\Voyager\\Models\\Category', NULL, '', '', 1, 0, NULL, '2022-11-08 04:16:26', '2022-11-08 04:16:26'),
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2022-11-08 04:16:26', '2022-11-08 04:16:26'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2022-11-08 04:16:26', '2022-11-08 04:16:26'),
-(8, 'boards', 'boards', 'Quadro', 'Quadros', NULL, 'App\\Models\\Board', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:09:14', '2022-11-12 17:16:00');
+(8, 'boards', 'boards', 'Quadro', 'Quadros', NULL, 'App\\Models\\Board', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:09:14', '2022-11-12 17:16:00'),
+(10, 'columns', 'columns', 'Coluna', 'Colunas', NULL, 'App\\Models\\Column', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:25:53', '2022-11-12 17:26:42');
 
 -- --------------------------------------------------------
 
@@ -299,7 +320,8 @@ INSERT INTO `menu_items` (`id`, `menu_id`, `title`, `url`, `target`, `icon_class
 (11, 1, 'Categories', '', '_self', 'voyager-categories', NULL, NULL, 7, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.categories.index', NULL),
 (12, 1, 'Posts', '', '_self', 'voyager-news', NULL, NULL, 5, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.posts.index', NULL),
 (13, 1, 'Pages', '', '_self', 'voyager-file-text', NULL, NULL, 6, '2022-11-08 04:16:26', '2022-11-08 01:27:23', 'voyager.pages.index', NULL),
-(14, 1, 'Quadros', '', '_self', 'voyager-browser', '#ffa50a', NULL, 10, '2022-11-12 17:09:14', '2022-11-12 17:09:39', 'voyager.boards.index', 'null');
+(14, 1, 'Quadros', '', '_self', 'voyager-browser', '#ffa50a', NULL, 10, '2022-11-12 17:09:14', '2022-11-12 17:09:39', 'voyager.boards.index', 'null'),
+(15, 1, 'Colunas', '', '_self', 'voyager-bookmark', '#f23a3a', NULL, 11, '2022-11-12 17:25:53', '2022-11-12 17:28:01', 'voyager.columns.index', 'null');
 
 -- --------------------------------------------------------
 
@@ -348,7 +370,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (28, '2017_04_11_000000_alter_post_nullable_fields_table', 2),
 (32, '2022_11_08_202640_create_clients_table', 3),
 (33, '2022_11_12_140437_create_boards_table', 4),
-(35, '2022_11_12_141052_create_board_client_table', 5);
+(35, '2022_11_12_141052_create_board_client_table', 5),
+(36, '2022_11_12_141939_create_columns_table', 6);
 
 -- --------------------------------------------------------
 
@@ -453,7 +476,12 @@ INSERT INTO `permissions` (`id`, `key`, `table_name`, `created_at`, `updated_at`
 (42, 'read_boards', 'boards', '2022-11-12 17:09:14', '2022-11-12 17:09:14'),
 (43, 'edit_boards', 'boards', '2022-11-12 17:09:14', '2022-11-12 17:09:14'),
 (44, 'add_boards', 'boards', '2022-11-12 17:09:14', '2022-11-12 17:09:14'),
-(45, 'delete_boards', 'boards', '2022-11-12 17:09:14', '2022-11-12 17:09:14');
+(45, 'delete_boards', 'boards', '2022-11-12 17:09:14', '2022-11-12 17:09:14'),
+(46, 'browse_columns', 'columns', '2022-11-12 17:25:53', '2022-11-12 17:25:53'),
+(47, 'read_columns', 'columns', '2022-11-12 17:25:53', '2022-11-12 17:25:53'),
+(48, 'edit_columns', 'columns', '2022-11-12 17:25:53', '2022-11-12 17:25:53'),
+(49, 'add_columns', 'columns', '2022-11-12 17:25:53', '2022-11-12 17:25:53'),
+(50, 'delete_columns', 'columns', '2022-11-12 17:25:53', '2022-11-12 17:25:53');
 
 -- --------------------------------------------------------
 
@@ -499,7 +527,12 @@ INSERT INTO `permission_role` (`permission_id`, `role_id`) VALUES
 (42, 1),
 (43, 1),
 (44, 1),
-(45, 1);
+(45, 1),
+(46, 1),
+(47, 1),
+(48, 1),
+(49, 1),
+(50, 1);
 
 -- --------------------------------------------------------
 
@@ -731,6 +764,13 @@ ALTER TABLE `clients`
   ADD UNIQUE KEY `clients_email_unique` (`email`);
 
 --
+-- Índices para tabela `columns`
+--
+ALTER TABLE `columns`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `columns_board_id_foreign` (`board_id`);
+
+--
 -- Índices para tabela `data_rows`
 --
 ALTER TABLE `data_rows`
@@ -860,7 +900,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT de tabela `boards`
 --
 ALTER TABLE `boards`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `board_client`
@@ -881,16 +921,22 @@ ALTER TABLE `clients`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de tabela `columns`
+--
+ALTER TABLE `columns`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de tabela `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
 -- AUTO_INCREMENT de tabela `data_types`
 --
 ALTER TABLE `data_types`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `failed_jobs`
@@ -908,13 +954,13 @@ ALTER TABLE `menus`
 -- AUTO_INCREMENT de tabela `menu_items`
 --
 ALTER TABLE `menu_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de tabela `pages`
@@ -926,7 +972,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT de tabela `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT de tabela `personal_access_tokens`
@@ -973,6 +1019,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categories`
   ADD CONSTRAINT `categories_parent_id_foreign` FOREIGN KEY (`parent_id`) REFERENCES `categories` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Limitadores para a tabela `columns`
+--
+ALTER TABLE `columns`
+  ADD CONSTRAINT `columns_board_id_foreign` FOREIGN KEY (`board_id`) REFERENCES `boards` (`id`) ON DELETE CASCADE;
 
 --
 -- Limitadores para a tabela `data_rows`
