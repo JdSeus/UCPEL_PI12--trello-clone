@@ -50,4 +50,9 @@ class Client extends Authenticatable
         return $this->hasMany('App\Models\Board');
     }
 
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
+
 }

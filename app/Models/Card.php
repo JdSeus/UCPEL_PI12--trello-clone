@@ -11,9 +11,14 @@ class Card extends Model
 
     protected $table = 'cards';
 
-    public function Column()
+    public function column()
     {
         return $this->belongsTo('App\Models\Column');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany('App\Models\Comment');
     }
 
 }
