@@ -45,4 +45,9 @@ class Client extends Authenticatable
         'deleted_at'
     ];
 
+    public function boards()
+    {
+        return $this->hasMany('App\Models\Board');
+    }
+
 }
