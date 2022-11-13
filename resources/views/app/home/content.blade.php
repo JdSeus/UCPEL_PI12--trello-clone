@@ -3,9 +3,10 @@
     
 
     <div class="mx-auto w-fit mb-[10vh]">
-        <div class="text-white cursor-pointer w-fit p-[5px] bg-yellow-600" hx-get="{{ route('ajax.simple-form') }}" hx-target="#js-dialog">
-            Abrir Form
-        </div>
+        <form class="block text-white w-fit p-[5px] bg-yellow-600" hx-post="{{ route('ajax.simple-form') }}" hx-target="#js-dialog">
+            @csrf
+            <button type="submit">Abrir Form</button>
+        </form>
         <p class="text-[32px]  font-bold">
             HOME
         </p>

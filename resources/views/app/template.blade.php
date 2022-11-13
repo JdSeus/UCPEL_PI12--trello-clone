@@ -37,7 +37,8 @@
                 <div class="absolute cursor-pointer text-[30px] leading-[1] top-0 right-[5px]" onclick="this.parentElement.parentElement.classList.remove('active');">
                     ×
                 </div>
-            <div id="js-dialog" hx-target="this"></div>
+            <div id="js-dialog" hx-target="this">
+            </div>
         </div>
     </div>
     <div class="ml-[5px]">
@@ -47,6 +48,7 @@
     <script>
 
         const modal = document.getElementById("js-modal")
+        const dialog = document.getElementById("js-dialog")
     
         htmx.on("htmx:afterSwap", (e) => {
             // Response targeting #js-dialog => show the modal
@@ -62,6 +64,36 @@
                 e.detail.shouldSwap = false
             }
         })
+
+        document.body.addEventListener('htmx:beforeOnLoad', function (evt) {
+            if (evt.detail.xhr.status === 419) {
+
+                let parent = document.createElement("div");
+
+                let block = document.createElement("div");
+                block.classList =  "block p-[16px] bg-slate-300  m-auto";
+
+                let title = document.createElement("div");
+                title.classList = "font-bold mb-[20px] text-center text-red-400";
+                title.innerText = "Página Expirada";
+
+                let text = document.createElement("div");
+                text.classList = "mb-[10px] text-center text-red-400";
+                text.innerText = "Por favor, recarregue a página.";
+
+                block.appendChild(title);
+                block.appendChild(text);
+
+                parent.appendChild(block);
+
+                dialog.replaceChildren([]);
+                dialog.appendChild(parent);
+
+                modal.classList.add('active');
+            }
+        });
+
+
     </script>
 
     @if (isset($onlyJS) && $onlyJS == true)
