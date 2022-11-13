@@ -3,6 +3,9 @@
     
 
     <div class="mx-auto w-fit mb-[10vh]">
+        <div class="text-white cursor-pointer w-fit p-[5px] bg-yellow-600" hx-get="{{ route('ajax.simple-form') }}" hx-target="#js-dialog">
+            Abrir Form
+        </div>
         <p class="text-[32px]  font-bold">
             HOME
         </p>

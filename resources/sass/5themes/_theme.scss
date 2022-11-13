@@ -5,3 +5,45 @@ html {
     
     font-family: 'Nunito', sans-serif;
 }
+
+
+.modal-container {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+  }
+  .modal-container .modal-item {
+    max-height: 100vh;
+    overflow: auto;
+    margin-top: 2rem;
+    background-color: #f3f3f3;
+    min-width: 300px;
+  }
+  
+  .modal-container.active {
+    display: flex;
+  }
+  
+  .pi-form p {
+    @apply mb-[20px]
+  }
+  
+  .pi-form label {
+    @apply block text-[14px] mb-[0.5rem] font-[500] text-gray-900
+  }
+  
+  .pi-form input:not([type='checkbox']) {
+    @apply block outline-none w-[100%] p-[5px] bg-gray-50 border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500
+  }
+  
+  .pi-form select {
+    @apply block outline-none w-[100%] p-[5px] bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500
+  }
