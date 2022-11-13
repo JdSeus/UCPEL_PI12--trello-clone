@@ -20,12 +20,11 @@ use App\Http\Controllers\Ajax\SimpleFormController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-//Route::get('/simple-form', [SimpleFormController::class, 'index'])->name('simple-form');
+Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
 
-Route::group(['prefix' => 'ajax', 'as' => 'ajax.', /*'middleware' => 'OnlyAjax'*/], function () {
-    Route::get('/simple-form', [SimpleFormController::class, 'index'])->name('simple-form');
+    Route::post('/simple-form', [SimpleFormController::class, 'index'])->name('simple-form');
+
 });
-
 
 Auth::routes();
 
