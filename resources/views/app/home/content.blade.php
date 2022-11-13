@@ -3,10 +3,15 @@
     
 
     <div class="mx-auto w-fit mb-[10vh]">
+        {{-- 
         <form class="block text-white w-fit p-[5px] bg-yellow-600" hx-post="{{ route('ajax.simple-form') }}" hx-target="#js-dialog">
             @csrf
             <button type="submit">Abrir Form</button>
         </form>
+        --}}
+        <div class="block cursor-pointer text-white w-fit p-[5px] bg-yellow-600" hx-get="{{ route('ajax.board.create') }}" hx-target="#js-dialog">
+            Criar Quadro
+        </div>
         <p class="text-[32px]  font-bold">
             HOME
         </p>

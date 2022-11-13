@@ -39,6 +39,8 @@
                 </div>
             <div id="js-dialog" hx-target="this">
             </div>
+            <div id="js-response">
+            </div>
         </div>
     </div>
     <div class="ml-[5px]">
@@ -49,6 +51,7 @@
 
         const modal = document.getElementById("js-modal")
         const dialog = document.getElementById("js-dialog")
+        const response = document.getElementById("js-response")
 
         function makeModalExpired() {
             let parent = document.createElement("div");
@@ -111,7 +114,17 @@
             // Empty response targeting #js-dialog => hide the modal
             if (e.detail.target.id == "js-dialog" && !e.detail.xhr.response) {
                 modal.classList.remove('active');
-                e.detail.shouldSwap = false
+                e.detail.shouldSwap = false;
+            }
+
+            if (e.detail.target.id == "js-response") {
+                if (e.detail.xhr.status === 303) {
+                    modal.classList.remove('active');
+                    e.detail.shouldSwap = false;
+                    window.location.href = e.detail.serverResponse;
+                } else {
+                    e.detail.target = htmx.find("#js-dialog");
+                }
             }
         })
 
@@ -123,7 +136,6 @@
                 makeModalNoPermission();
             }
         });
-
 
     </script>
 
