@@ -49,6 +49,56 @@
 
         const modal = document.getElementById("js-modal")
         const dialog = document.getElementById("js-dialog")
+
+        function makeModalExpired() {
+            let parent = document.createElement("div");
+
+            let block = document.createElement("div");
+            block.classList =  "block p-[16px] bg-slate-300  m-auto";
+
+            let title = document.createElement("div");
+            title.classList = "font-bold mb-[20px] text-center text-red-400";
+            title.innerText = "Página Expirada";
+
+            let text = document.createElement("div");
+            text.classList = "mb-[10px] text-center text-red-400";
+            text.innerText = "Por favor, recarregue a página.";
+
+            block.appendChild(title);
+            block.appendChild(text);
+
+            parent.appendChild(block);
+
+            dialog.replaceChildren([]);
+            dialog.appendChild(parent);
+
+            modal.classList.add('active');
+        }
+
+        function makeModalNoPermission() {
+            let parent = document.createElement("div");
+
+            let block = document.createElement("div");
+            block.classList =  "block p-[16px] bg-slate-300  m-auto";
+
+            let title = document.createElement("div");
+            title.classList = "font-bold mb-[20px] text-center text-red-400";
+            title.innerText = "Sem Permissão";
+
+            let text = document.createElement("div");
+            text.classList = "mb-[10px] text-center text-red-400";
+            text.innerText = "Você não ter permissão para fazer isso.";
+
+            block.appendChild(title);
+            block.appendChild(text);
+
+            parent.appendChild(block);
+
+            dialog.replaceChildren([]);
+            dialog.appendChild(parent);
+
+            modal.classList.add('active');
+        }
     
         htmx.on("htmx:afterSwap", (e) => {
             // Response targeting #js-dialog => show the modal
@@ -67,29 +117,10 @@
 
         document.body.addEventListener('htmx:beforeOnLoad', function (evt) {
             if (evt.detail.xhr.status === 419) {
-
-                let parent = document.createElement("div");
-
-                let block = document.createElement("div");
-                block.classList =  "block p-[16px] bg-slate-300  m-auto";
-
-                let title = document.createElement("div");
-                title.classList = "font-bold mb-[20px] text-center text-red-400";
-                title.innerText = "Página Expirada";
-
-                let text = document.createElement("div");
-                text.classList = "mb-[10px] text-center text-red-400";
-                text.innerText = "Por favor, recarregue a página.";
-
-                block.appendChild(title);
-                block.appendChild(text);
-
-                parent.appendChild(block);
-
-                dialog.replaceChildren([]);
-                dialog.appendChild(parent);
-
-                modal.classList.add('active');
+                makeModalExpired();
+            }
+            if (evt.detail.xhr.status === 403) {
+                makeModalNoPermission();
             }
         });
 
