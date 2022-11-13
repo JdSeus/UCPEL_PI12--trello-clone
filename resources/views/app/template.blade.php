@@ -32,6 +32,38 @@
     @yield('content')
     {{--  End Content --}}
 
+    <div id="js-modal" class="modal-container">
+        <div class="modal-item relative">
+                <div class="absolute cursor-pointer text-[30px] leading-[1] top-0 right-[5px]" onclick="this.parentElement.parentElement.classList.remove('active');">
+                    ×
+                </div>
+            <div id="js-dialog" hx-target="this"></div>
+        </div>
+    </div>
+    <div class="ml-[5px]">
+
+
+    <script src="https://unpkg.com/htmx.org@1.8.0"></script>
+    <script>
+
+        const modal = document.getElementById("js-modal")
+    
+        htmx.on("htmx:afterSwap", (e) => {
+            // Response targeting #js-dialog => show the modal
+            if (e.detail.target.id == "js-dialog") {
+                modal.classList.add('active');
+            }
+        })
+    
+        htmx.on("htmx:beforeSwap", (e) => {
+            // Empty response targeting #js-dialog => hide the modal
+            if (e.detail.target.id == "js-dialog" && !e.detail.xhr.response) {
+                modal.classList.remove('active');
+                e.detail.shouldSwap = false
+            }
+        })
+    </script>
+
     @if (isset($onlyJS) && $onlyJS == true)
         @yield('onlyJS')
     @else
