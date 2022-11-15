@@ -7,7 +7,7 @@
                 Bem vindo, {{ Auth::user()->name }}!
             </p>
     
-            <div class="mx-auto block cursor-pointer transition duration-300 text-white w-fit p-[5px] bg-slate-500 hover:bg-gray-700 mb-4" hx-get="{{ route('ajax.board.my-boards') }}" hx-target="#js-dialog">
+            <div class="mx-auto block cursor-pointer transition duration-300 text-white w-fit p-[5px] bg-slate-500 hover:bg-gray-700 mb-4 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.board.my-boards') }}" hx-target="#js-dialog">
                 Meus Quadros
             </div>
     

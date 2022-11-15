@@ -20,6 +20,7 @@ use App\Http\Controllers\Ajax\SimpleFormController;
 use App\Http\Controllers\Ajax\Board\MyBoardsController;
 use App\Http\Controllers\Ajax\Board\BoardCreateController;
 use App\Http\Controllers\Ajax\Board\BoardEditController;
+use App\Http\Controllers\Ajax\Board\BoardRemoveController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -42,6 +43,9 @@ Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
 
         Route::get('/edit/{board_id}', [BoardEditController::class, 'index'])->name('edit');
         Route::post('/edit/{board_id}', [BoardEditController::class, 'post'])->name('edit');
+
+        Route::get('/remove/{board_id}', [BoardRemoveController::class, 'index'])->name('remove');
+        Route::post('/remove/{board_id}', [BoardRemoveController::class, 'post'])->name('remove');
 
     });
 

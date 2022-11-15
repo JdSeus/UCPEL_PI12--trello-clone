@@ -23,8 +23,8 @@
                 </div>
             </div>
 
-            <div class="text-center text-sm mb-4">
-                <button type="submit" class="transition duration-300 bg-slate-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            <div class="text-center mb-4">
+                <button type="submit" class="transition duration-300 bg-yellow-500 hover:bg-yellow-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                     Editar
                 </button>
             </div>
