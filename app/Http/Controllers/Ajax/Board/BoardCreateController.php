@@ -57,7 +57,7 @@ class BoardCreateController extends Controller
 
         $board->clients()->attach([$client->id]);
 
-        return response(route('adx'), 303);
+        return redirect()->route('ajax.board.my-boards');
     }
 
 }
