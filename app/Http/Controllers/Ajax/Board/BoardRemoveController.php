@@ -5,17 +5,12 @@ namespace App\Http\Controllers\Ajax\Board;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Helpers\Helper;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Builder;
 
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\MessageBag;
-
 use App\Models\Board;
 
-class BoardEditController extends Controller
+class BoardRemoveController extends Controller
 {
 
     public function index(Request $r, $board_id)
@@ -38,7 +33,7 @@ class BoardEditController extends Controller
             abort(404);
         }
 
-        return view('app.ajax.board.edit', compact('board'));
+        return view('app.ajax.board.remove', compact('board'));
     }
 
     public function post(Request $r, $board_id)
@@ -61,24 +56,7 @@ class BoardEditController extends Controller
             abort(404);
         }
 
-        $errors = new MessageBag();
-
-        $editBoardValidator = Validator::make(request()->all(), 
-            [
-                'board_title' => ['required', 'string'],
-            ],
-            [
-                'board_title.required' => 'O campo Título é necessário!',
-            ]
-        );
-
-        if ($editBoardValidator->fails()) {
-            $errors = Helper::addErrorsOfValidatorToErrorBag($editBoardValidator, $errors);
-            return view('app.ajax.board.edit', compact('board'))->withErrors($errors);
-        }
-
-        $board->title = ''.$r->board_title;
-        $board->save();
+        $board->delete();
 
         return redirect()->route('ajax.board.my-boards');
     }
