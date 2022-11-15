@@ -90,7 +90,7 @@
 
             let text = document.createElement("div");
             text.classList = "mb-[10px] text-center text-red-400";
-            text.innerText = "Você não ter permissão para fazer isso.";
+            text.innerText = "Você não tem permissão para fazer isso.";
 
             block.appendChild(title);
             block.appendChild(text);
