@@ -9,7 +9,7 @@
             @foreach($boards as $board)
                 <div class="mb-4">
                     <div class="p-[5px] flex items-baseline justify-between border-b border-t border-solid border-black">
-                        <a href="{{ route('board', ['board_id' => $board->id]) }}" class="block ransition duration-300 text-gray-700 hover:text-blue-500 text-sm font-bold mb-2 pr-[20px]">
+                        <a href="{{ route('board', ['board_id' => $board->id]) }}" class="block w-fit ransition duration-300 text-gray-700 hover:text-blue-500 text-sm font-bold mb-2 mr-[20px]">
                             {{ $board->title }}
                         </a>
                         <div class="flex">
