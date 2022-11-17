@@ -9,9 +9,9 @@
             @foreach($boards as $board)
                 <div class="mb-4">
                     <div class="p-[5px] flex items-baseline justify-between border-b border-t border-solid border-black">
-                        <div class="block text-gray-700 text-sm font-bold mb-2 pr-[20px]">
+                        <a href="{{ route('board', ['board_id' => $board->id]) }}" class="block ransition duration-300 text-gray-700 hover:text-blue-500 text-sm font-bold mb-2 pr-[20px]">
                             {{ $board->title }}
-                        </div>
+                        </a>
                         <div class="flex">
                             <a class="block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-yellow-500 hover:bg-yellow-700 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.board.edit', $board->id) }}">
                                 Editar
