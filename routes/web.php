@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\HomeController;
-
-use App\Http\Controllers\Ajax\SimpleFormController;
+use App\Http\Controllers\BoardController;
 
 use App\Http\Controllers\Ajax\Board\MyBoardsController;
 use App\Http\Controllers\Ajax\Board\BoardCreateController;
@@ -26,14 +25,10 @@ use App\Http\Controllers\Ajax\Board\BoardRemoveController;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/adx', function() {
-    echo 'TESTE';
-})->name('adx');
+Route::get('/quadro/{board_id}', [BoardController::class, 'index'])->name('board');
 
 Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
-
-    Route::post('/simple-form', [SimpleFormController::class, 'index'])->name('simple-form');
-
+    
     Route::group(['prefix' => 'board', 'as' => 'board.'], function () {
 
         Route::get('/my-boards', [MyBoardsController::class, 'index'])->name('my-boards');
