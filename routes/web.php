@@ -23,6 +23,7 @@ use App\Http\Controllers\Ajax\Board\BoardRemoveController;
 
 use App\Http\Controllers\Ajax\Column\ColumnCreateController;
 use App\Http\Controllers\Ajax\Column\ColumnRemoveController;
+use App\Http\Controllers\Ajax\Column\ColumnEditController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -51,6 +52,9 @@ Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
 
         Route::get('/create/{board_id}', [ColumnCreateController::class, 'index'])->name('create');
         Route::post('/create/{board_id}', [ColumnCreateController::class, 'post'])->name('create');
+
+        Route::get('/edit/{column_id}', [ColumnEditController::class, 'index'])->name('edit');
+        Route::post('/edit/{column_id}', [ColumnEditController::class, 'post'])->name('edit');
 
         Route::get('/remove/{column_id}', [ColumnRemoveController::class, 'index'])->name('remove');
         Route::post('/remove/{column_id}', [ColumnRemoveController::class, 'post'])->name('remove');
