@@ -14,9 +14,22 @@
         @foreach($board->columns as $column)
             <div class="ml-[20px] mr-[20px] w-fit">
                 <div class="min-w-[max(250px,calc(100vw-100px))] sm:min-w-[300px] bg-white rounded p-[20px]">
-                    <p class="text-xl font-bold text-gray-700 text-center">
-                        {{ $column->title }}
-                    </p>
+                    <div class="flex justify-between">
+                        <p class="text-xl font-bold text-gray-700 text-center">
+                            {{ $column->title }}
+                        </p>
+                        <div>
+                            {{-- 
+                            <a class="block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-yellow-500 hover:bg-yellow-700 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.column.edit', $column->id) }}">
+                                Editar
+                            </a>
+                            --}}
+                            <a class="text-[12px] ml-[5px] block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-red-500 hover:bg-red-700 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.column.remove', $column->id) }}" hx-target="#js-dialog">
+                                Remover
+                            </a>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         @endforeach
