@@ -13,7 +13,7 @@
     <div class="mx-auto w-fit">
         <div class="min-w-[300px] bg-white rounded p-[20px]">
                 
-            <div class="mx-auto block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-green-500 hover:bg-green-700" hx-get="{{ route('ajax.board.create') }}" hx-target="#js-dialog">
+            <div class="mx-auto block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-green-500 hover:bg-green-700" hx-get="{{ route('ajax.column.create', ['board_id' => $board->id]) }}" hx-target="#js-dialog">
                 Criar Coluna
             </div>
     
