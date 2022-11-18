@@ -18,12 +18,10 @@
                         <p class="text-xl font-bold text-gray-700 text-center">
                             {{ $column->title }}
                         </p>
-                        <div>
-                            {{-- 
-                            <a class="block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-yellow-500 hover:bg-yellow-700 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.column.edit', $column->id) }}">
+                        <div class="flex">
+                            <a class="text-[12px] block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-yellow-500 hover:bg-yellow-700 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.column.edit', $column->id) }}" hx-target="#js-dialog">
                                 Editar
                             </a>
-                            --}}
                             <a class="text-[12px] ml-[5px] block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-red-500 hover:bg-red-700 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.column.remove', $column->id) }}" hx-target="#js-dialog">
                                 Remover
                             </a>
