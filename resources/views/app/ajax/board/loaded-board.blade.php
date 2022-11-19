@@ -41,7 +41,7 @@
                         @foreach($column->cards as $card)
                         <div class="bg-white mb-4 px-[20px] block  p-[5px]">
                             <div class="flex justify-between">
-                                <p class="cursor-pointer font-bold transition duration-300 text-gray-700 hover:text-blue-500">
+                                <p class="cursor-pointer font-bold transition duration-300 text-gray-700 hover:text-blue-500" hx-get="{{ route('ajax.card.edit', $card->id) }}" hx-target="#js-dialog">
                                     {{ $card->title }}
                                 </p>
                                 <div class="flex">
