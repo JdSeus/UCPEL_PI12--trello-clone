@@ -77,9 +77,19 @@ class ColumnCreateController extends Controller
             return view('app.ajax.column.create', compact('board'))->withErrors($errors);
         }
 
+        $auxOrder = 0;
+        $otherColumnsOfBoard = Column::where('board_id', $board->id)->get();
+        foreach($otherColumnsOfBoard as $otherColumnOfBoard) {
+            if ($otherColumnOfBoard->order > $auxOrder) {
+                $auxOrder = $otherColumnOfBoard->order;
+            }
+        }
+        $auxOrder = $auxOrder + 1;
+
         $column = new Column();
         $column->title = ''.$r->column_title;
         $column->board_id = $board->id;
+        $column->order = $auxOrder;
         $column->save();
 
         return response('',204)->header('HX-Trigger', 'BoardListChanged');

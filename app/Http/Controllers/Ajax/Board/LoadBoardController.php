@@ -24,7 +24,13 @@ class LoadBoardController extends Controller
 
         $client = Auth::guard('client')->user();
 
-        $board = Board::with('clients')
+        $board = Board::with(
+            [
+                'clients',
+                'columns' => function($query) {
+                    $query->orderBy('order');
+                }
+            ])
             ->whereHas('clients', function (Builder $queryA) use ($client) {
                 $queryA->where('client_id', $client->id); 
             })
