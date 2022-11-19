@@ -116,7 +116,17 @@ class CardRemoveController extends Controller
             abort(404);
         }
 
+        $auxOrder = (int) (''.$card->order);
+
         $card->delete();
+
+        $cardsToTheDown = Card::where('column_id', $column->id)->where('order', '>', ''.($auxOrder))->orderBy('order')->get();
+
+        foreach($cardsToTheDown as $cardToTheDown) {
+            $cardToTheDownOrder = (int) (''.$cardToTheDown->order);
+            $cardToTheDown->order = $cardToTheDownOrder - 1;
+            $cardToTheDown->save();
+        }
 
         return response('',204)->header('HX-Trigger', 'BoardListChanged');
     }

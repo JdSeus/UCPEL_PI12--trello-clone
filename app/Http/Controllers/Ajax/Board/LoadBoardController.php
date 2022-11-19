@@ -28,7 +28,10 @@ class LoadBoardController extends Controller
             [
                 'clients',
                 'columns' => function($query) {
-                    $query->orderBy('order');
+                    $query->with(['cards' => function($queryB) {
+                        $queryB->orderBy('order');
+                    }])
+                    ->orderBy('order');
                 }
             ])
             ->whereHas('clients', function (Builder $queryA) use ($client) {

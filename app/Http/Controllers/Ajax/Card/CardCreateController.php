@@ -110,9 +110,19 @@ class CardCreateController extends Controller
             return view('app.ajax.card.create', compact('column'))->withErrors($errors);
         }
 
+        $auxOrder = 0;
+        $otherCardsOfColumn = Card::where('column_id', $column->id)->get();
+        foreach($otherCardsOfColumn as $otherCardOfColumn) {
+            if ($otherCardOfColumn->order > $auxOrder) {
+                $auxOrder = $otherCardOfColumn->order;
+            }
+        }
+        $auxOrder = $auxOrder + 1;
+
         $card = new Card();
         $card->title = ''.$r->card_title;
         $card->column_id = $column->id;
+        $card->order = $auxOrder;
         $card->save();
 
         return response('',204)->header('HX-Trigger', 'BoardListChanged');

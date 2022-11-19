@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Nov-2022 às 19:46
+-- Tempo de geração: 19-Nov-2022 às 23:04
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -85,8 +85,19 @@ CREATE TABLE `cards` (
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `order` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `cards`
+--
+
+INSERT INTO `cards` (`id`, `column_id`, `date`, `title`, `description`, `created_at`, `updated_at`, `order`) VALUES
+(27, 73, NULL, 'D', NULL, '2022-11-19 22:03:06', '2022-11-19 22:03:44', 4),
+(29, 73, NULL, 'A', NULL, '2022-11-19 22:03:11', '2022-11-19 22:03:17', 1),
+(30, 73, NULL, 'C', NULL, '2022-11-19 22:03:14', '2022-11-19 22:03:45', 3),
+(31, 73, NULL, 'B', NULL, '2022-11-19 22:03:43', '2022-11-19 22:03:45', 2);
 
 -- --------------------------------------------------------
 
@@ -158,10 +169,9 @@ CREATE TABLE `columns` (
 --
 
 INSERT INTO `columns` (`id`, `board_id`, `title`, `created_at`, `updated_at`, `order`) VALUES
-(52, 17, 'Coluna A', '2022-11-19 18:23:00', '2022-11-19 18:38:55', 3),
-(56, 17, 'Coluna B', '2022-11-19 18:32:59', '2022-11-19 18:46:23', 4),
-(60, 17, 'Coluna C', '2022-11-19 18:46:26', '2022-11-19 18:46:37', 5),
-(61, 17, 'Coluna D', '2022-11-19 18:46:28', '2022-11-19 18:46:42', 6);
+(68, 17, 'Coluna A', '2022-11-19 20:02:32', '2022-11-19 21:21:49', 1),
+(70, 17, 'Coluna C', '2022-11-19 20:02:41', '2022-11-19 21:21:45', 3),
+(73, 17, 'Coluna B', '2022-11-19 20:03:14', '2022-11-19 21:21:49', 2);
 
 -- --------------------------------------------------------
 
@@ -274,11 +284,11 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (66, 10, 'column_belongsto_board_relationship', 'relationship', 'Quadro', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Board\",\"table\":\"boards\",\"type\":\"belongsTo\",\"column\":\"board_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (67, 13, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (68, 13, 'column_id', 'text', 'Coluna', 0, 1, 1, 1, 1, 1, '{}', 2),
-(69, 13, 'date', 'date', 'Data', 0, 1, 1, 1, 1, 1, '{}', 4),
-(70, 13, 'title', 'text', 'Título', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:255\",\"messages\":{\"max\":\"O campo :attribute deve ter no m\\u00e1ximo :max caracteres.\"}}}', 5),
-(71, 13, 'description', 'rich_text_box', 'Descrição', 0, 1, 1, 1, 1, 1, '{}', 6),
-(72, 13, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 7),
-(73, 13, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 8),
+(69, 13, 'date', 'date', 'Data', 0, 1, 1, 1, 1, 1, '{}', 5),
+(70, 13, 'title', 'text', 'Título', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:255\",\"messages\":{\"max\":\"O campo :attribute deve ter no m\\u00e1ximo :max caracteres.\"}}}', 6),
+(71, 13, 'description', 'rich_text_box', 'Descrição', 0, 1, 1, 1, 1, 1, '{}', 7),
+(72, 13, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 8),
+(73, 13, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 9),
 (74, 13, 'card_belongsto_column_relationship', 'relationship', 'Coluna', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Column\",\"table\":\"columns\",\"type\":\"belongsTo\",\"column\":\"column_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (75, 14, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (76, 14, 'client_id', 'text', 'Cliente', 0, 1, 1, 1, 1, 1, '{}', 2),
@@ -298,7 +308,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (90, 15, 'deleted_at', 'timestamp', 'Deletado em', 0, 1, 1, 1, 1, 1, '{}', 9),
 (91, 14, 'card_id', 'text', 'Card', 0, 1, 1, 1, 1, 1, '{}', 4),
 (92, 14, 'comment_belongsto_card_relationship', 'relationship', 'Card', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Card\",\"table\":\"cards\",\"type\":\"belongsTo\",\"column\":\"card_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
-(93, 10, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4);
+(93, 10, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4),
+(94, 13, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4);
 
 -- --------------------------------------------------------
 
@@ -338,7 +349,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (8, 'boards', 'boards', 'Quadro', 'Quadros', NULL, 'App\\Models\\Board', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:09:14', '2022-11-12 17:16:00'),
 (10, 'columns', 'columns', 'Coluna', 'Colunas', NULL, 'App\\Models\\Column', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"id\",\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:25:53', '2022-11-19 18:39:29'),
 (12, 'card', 'card', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2022-11-12 17:45:42', '2022-11-12 17:45:42'),
-(13, 'cards', 'cards', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:47:49', '2022-11-12 17:49:24'),
+(13, 'cards', 'cards', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:47:49', '2022-11-19 21:32:50'),
 (14, 'comments', 'comments', 'Comentário', 'Comentários', NULL, 'App\\Models\\Comment', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:57:40', '2022-11-12 18:06:51'),
 (15, 'clients', 'clients', 'Cliente', 'Clientes', NULL, 'App\\Models\\Client', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 18:00:11', '2022-11-12 18:01:57');
 
@@ -475,7 +486,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (36, '2022_11_12_141939_create_columns_table', 6),
 (39, '2022_11_12_143951_create_cards_table', 7),
 (42, '2022_11_12_145421_create_comments_table', 8),
-(43, '2022_11_19_153426_add_order_to_columns_table', 9);
+(43, '2022_11_19_153426_add_order_to_columns_table', 9),
+(44, '2022_11_19_183140_add_order_to_cards_table', 10);
 
 -- --------------------------------------------------------
 
@@ -1069,7 +1081,7 @@ ALTER TABLE `board_client`
 -- AUTO_INCREMENT de tabela `cards`
 --
 ALTER TABLE `cards`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT de tabela `categories`
@@ -1087,7 +1099,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de tabela `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT de tabela `comments`
@@ -1099,7 +1111,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT de tabela `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
 
 --
 -- AUTO_INCREMENT de tabela `data_types`
@@ -1129,7 +1141,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `pages`
