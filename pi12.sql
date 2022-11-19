@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2022 às 19:09
+-- Tempo de geração: 19-Nov-2022 às 19:46
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -34,6 +34,13 @@ CREATE TABLE `boards` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Extraindo dados da tabela `boards`
+--
+
+INSERT INTO `boards` (`id`, `title`, `created_at`, `updated_at`) VALUES
+(17, 'Teste A', '2022-11-15 17:29:22', '2022-11-15 17:35:24');
+
 -- --------------------------------------------------------
 
 --
@@ -53,7 +60,17 @@ CREATE TABLE `board_client` (
 --
 
 INSERT INTO `board_client` (`id`, `board_id`, `client_id`, `created_at`, `updated_at`) VALUES
-(1, 4, 2, NULL, NULL);
+(1, 4, 2, NULL, NULL),
+(2, 9, 1, NULL, NULL),
+(3, 10, 1, NULL, NULL),
+(4, 11, 1, NULL, NULL),
+(5, 12, 1, NULL, NULL),
+(6, 13, 1, NULL, NULL),
+(7, 14, 1, NULL, NULL),
+(8, 15, 1, NULL, NULL),
+(9, 16, 1, NULL, NULL),
+(10, 17, 1, NULL, NULL),
+(11, 18, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -132,8 +149,19 @@ CREATE TABLE `columns` (
   `board_id` bigint(20) UNSIGNED DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `order` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `columns`
+--
+
+INSERT INTO `columns` (`id`, `board_id`, `title`, `created_at`, `updated_at`, `order`) VALUES
+(52, 17, 'Coluna A', '2022-11-19 18:23:00', '2022-11-19 18:38:55', 3),
+(56, 17, 'Coluna B', '2022-11-19 18:32:59', '2022-11-19 18:46:23', 4),
+(60, 17, 'Coluna C', '2022-11-19 18:46:26', '2022-11-19 18:46:37', 5),
+(61, 17, 'Coluna D', '2022-11-19 18:46:28', '2022-11-19 18:46:42', 6);
 
 -- --------------------------------------------------------
 
@@ -240,9 +268,9 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (60, 8, 'board_belongstomany_client_relationship', 'relationship', 'Clientes', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Client\",\"table\":\"clients\",\"type\":\"belongsToMany\",\"column\":\"id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"board_client\",\"pivot\":\"1\",\"taggable\":\"0\"}', 2),
 (61, 10, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (62, 10, 'board_id', 'text', 'Quadro', 0, 1, 1, 1, 1, 1, '{}', 2),
-(63, 10, 'title', 'text', 'Título', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:255\",\"messages\":{\"max\":\"O campo :attribute deve ter no m\\u00e1ximo :max caracteres.\"}}}', 4),
-(64, 10, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 5),
-(65, 10, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 6),
+(63, 10, 'title', 'text', 'Título', 0, 1, 1, 1, 1, 1, '{\"validation\":{\"rule\":\"max:255\",\"messages\":{\"max\":\"O campo :attribute deve ter no m\\u00e1ximo :max caracteres.\"}}}', 5),
+(64, 10, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 6),
+(65, 10, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 7),
 (66, 10, 'column_belongsto_board_relationship', 'relationship', 'Quadro', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Board\",\"table\":\"boards\",\"type\":\"belongsTo\",\"column\":\"board_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (67, 13, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (68, 13, 'column_id', 'text', 'Coluna', 0, 1, 1, 1, 1, 1, '{}', 2),
@@ -269,7 +297,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (89, 15, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 8),
 (90, 15, 'deleted_at', 'timestamp', 'Deletado em', 0, 1, 1, 1, 1, 1, '{}', 9),
 (91, 14, 'card_id', 'text', 'Card', 0, 1, 1, 1, 1, 1, '{}', 4),
-(92, 14, 'comment_belongsto_card_relationship', 'relationship', 'Card', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Card\",\"table\":\"cards\",\"type\":\"belongsTo\",\"column\":\"card_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5);
+(92, 14, 'comment_belongsto_card_relationship', 'relationship', 'Card', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Card\",\"table\":\"cards\",\"type\":\"belongsTo\",\"column\":\"card_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
+(93, 10, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4);
 
 -- --------------------------------------------------------
 
@@ -307,7 +336,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (5, 'posts', 'posts', 'Post', 'Posts', 'voyager-news', 'TCG\\Voyager\\Models\\Post', 'TCG\\Voyager\\Policies\\PostPolicy', '', '', 1, 0, NULL, '2022-11-08 04:16:26', '2022-11-08 04:16:26'),
 (6, 'pages', 'pages', 'Page', 'Pages', 'voyager-file-text', 'TCG\\Voyager\\Models\\Page', NULL, '', '', 1, 0, NULL, '2022-11-08 04:16:26', '2022-11-08 04:16:26'),
 (8, 'boards', 'boards', 'Quadro', 'Quadros', NULL, 'App\\Models\\Board', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:09:14', '2022-11-12 17:16:00'),
-(10, 'columns', 'columns', 'Coluna', 'Colunas', NULL, 'App\\Models\\Column', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:25:53', '2022-11-12 17:26:42'),
+(10, 'columns', 'columns', 'Coluna', 'Colunas', NULL, 'App\\Models\\Column', NULL, NULL, NULL, 1, 0, '{\"order_column\":\"id\",\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:25:53', '2022-11-19 18:39:29'),
 (12, 'card', 'card', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2022-11-12 17:45:42', '2022-11-12 17:45:42'),
 (13, 'cards', 'cards', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:47:49', '2022-11-12 17:49:24'),
 (14, 'comments', 'comments', 'Comentário', 'Comentários', NULL, 'App\\Models\\Comment', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:57:40', '2022-11-12 18:06:51'),
@@ -445,7 +474,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (35, '2022_11_12_141052_create_board_client_table', 5),
 (36, '2022_11_12_141939_create_columns_table', 6),
 (39, '2022_11_12_143951_create_cards_table', 7),
-(42, '2022_11_12_145421_create_comments_table', 8);
+(42, '2022_11_12_145421_create_comments_table', 8),
+(43, '2022_11_19_153426_add_order_to_columns_table', 9);
 
 -- --------------------------------------------------------
 
@@ -1027,13 +1057,13 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT de tabela `boards`
 --
 ALTER TABLE `boards`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de tabela `board_client`
 --
 ALTER TABLE `board_client`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `cards`
@@ -1057,7 +1087,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de tabela `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT de tabela `comments`
@@ -1069,7 +1099,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT de tabela `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT de tabela `data_types`
@@ -1099,7 +1129,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de tabela `pages`

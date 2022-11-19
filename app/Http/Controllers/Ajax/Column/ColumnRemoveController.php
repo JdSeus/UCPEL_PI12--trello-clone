@@ -86,7 +86,17 @@ class ColumnRemoveController extends Controller
             abort(404);
         }
 
+        $auxOrder = (int) (''.$column->order);
+
         $column->delete();
+
+        $columnsToTheRight = Column::where('board_id', $board->id)->where('order', '>', ''.($auxOrder))->orderBy('order')->get();
+
+        foreach($columnsToTheRight as $columnToTheRight) {
+            $columnToTheRightOrder = (int) (''.$columnToTheRight->order);
+            $columnToTheRight->order = $columnToTheRightOrder - 1;
+            $columnToTheRight->save();
+        }
 
         return response('',204)->header('HX-Trigger', 'BoardListChanged');
     }
