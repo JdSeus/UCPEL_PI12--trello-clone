@@ -21,9 +21,9 @@
                     @endif
                 @endif
 
-                <div class="min-w-[max(250px,calc(100vw-100px))] sm:min-w-[300px] bg-white rounded p-[20px]">
+                <div class="min-w-[max(250px,calc(100vw-100px))] sm:min-w-[300px] bg-gray-200 rounded p-[20px]">
 
-                    <div class="flex justify-between">
+                    <div class="flex justify-between mb-8">
                         <p class="text-xl font-bold text-gray-700 text-center">
                             {{ $column->title }}
                         </p>
@@ -39,8 +39,18 @@
 
                     @if(isset($column->cards) && count($column->cards))
                         @foreach($column->cards as $card)
-                        <div class="mx-auto mt-4 block cursor-pointer transition duration-300 text-gray-700 hover:text-blue-500 w-fit p-[5px]">
-                            {{ $card->title }}
+                        <div class="bg-white mb-4 px-[20px] block  p-[5px]">
+                            <div class="flex justify-between">
+                                <p class="cursor-pointer font-bold transition duration-300 text-gray-700 hover:text-blue-500">
+                                    {{ $card->title }}
+                                </p>
+                                <div class="flex">
+                                    <a class="flex items-center rounded-full justify-center w-[25px] h-[25px] text-[12px] ml-[5px] cursor-pointer text-white transition duration-300 bg-red-500 hover:bg-red-700 focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.card.remove', $card->id) }}" hx-target="#js-dialog">
+                                        &#10005;
+                                    </a>
+                                </div>
+                            </div>
+                            
                         </div>
                         @endforeach
                     @endif
