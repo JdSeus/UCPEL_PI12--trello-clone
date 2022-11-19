@@ -21,6 +21,10 @@
 
 @endsection
 
-@section('scripts')
+@section('beforeJS')
+<script>
 
+    htmx.trigger("#js-boards-trigger", "BoardListChanged");
+
+</script>
 @endsection

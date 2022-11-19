@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BoardController;
 
+use App\Http\Controllers\Ajax\Board\LoadBoardController;
 use App\Http\Controllers\Ajax\Board\MyBoardsController;
 use App\Http\Controllers\Ajax\Board\BoardCreateController;
 use App\Http\Controllers\Ajax\Board\BoardEditController;
@@ -34,6 +35,8 @@ Route::get('/quadro/{board_id}', [BoardController::class, 'index'])->name('board
 Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
     
     Route::group(['prefix' => 'board', 'as' => 'board.'], function () {
+
+        Route::get('/load-board/{board_id}', [LoadBoardController::class, 'index'])->name('load-board');
 
         Route::get('/my-boards', [MyBoardsController::class, 'index'])->name('my-boards');
 

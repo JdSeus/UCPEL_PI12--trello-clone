@@ -114,9 +114,7 @@ class ColumnEditController extends Controller
         $column->title = ''.$r->column_title;
         $column->save();
 
-        $route = route('board', ['board_id' => $board->id]);
-
-        return response($route, 303);
+        return response('',204)->header('HX-Trigger', 'BoardListChanged');
     }
 
 }
