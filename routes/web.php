@@ -25,6 +25,7 @@ use App\Http\Controllers\Ajax\Board\BoardRemoveController;
 use App\Http\Controllers\Ajax\Column\ColumnCreateController;
 use App\Http\Controllers\Ajax\Column\ColumnRemoveController;
 use App\Http\Controllers\Ajax\Column\ColumnEditController;
+use App\Http\Controllers\Ajax\Column\ColumnChangeOrderController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -61,6 +62,8 @@ Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
 
         Route::get('/remove/{column_id}', [ColumnRemoveController::class, 'index'])->name('remove');
         Route::post('/remove/{column_id}', [ColumnRemoveController::class, 'post'])->name('remove');
+
+        Route::get('/change-order/{column_id}/{direction}', [ColumnChangeOrderController::class, 'index'])->name('change-order');
 
     });
 

@@ -3,19 +3,19 @@
         @foreach($board->columns as $column)
             <div class="relative ml-[20px] mr-[20px] w-fit">
                 @if ($loop->first)
-                    <div class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-0 bg-white">
+                    <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'right']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-0 bg-white">
                         @include('app.icons.arrow')
                     </div>
                 @else
                     @if ($loop->last)
-                        <div class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] left-0 bg-white">
+                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'left']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] left-0 bg-white">
                             @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
                         </div>
                     @else 
-                        <div class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[30px] bg-white">
+                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'left']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[30px] bg-white">
                             @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
                         </div>
-                        <div class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[0] bg-white">
+                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'right']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[0] bg-white">
                             @include('app.icons.arrow')
                         </div>
                     @endif
