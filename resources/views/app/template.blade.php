@@ -123,7 +123,12 @@
                     e.detail.shouldSwap = false;
                     window.location.href = e.detail.serverResponse;
                 } else {
-                    e.detail.target = htmx.find("#js-dialog");
+                    if (e.detail.xhr.status === 204) {
+                        modal.classList.remove('active');
+                        e.detail.shouldSwap = false;
+                    } else {
+                        e.detail.target = htmx.find("#js-dialog");
+                    }
                 }
             }
         })
@@ -138,6 +143,10 @@
         });
 
     </script>
+
+    @hasSection('beforeJS')
+        @yield('beforeJS')
+    @endif
 
     @if (isset($onlyJS) && $onlyJS == true)
         @yield('onlyJS')

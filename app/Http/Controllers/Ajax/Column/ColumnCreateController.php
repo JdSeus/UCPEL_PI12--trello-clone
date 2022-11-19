@@ -82,9 +82,7 @@ class ColumnCreateController extends Controller
         $column->board_id = $board->id;
         $column->save();
 
-        $route = route('board', ['board_id' => $board->id]);
-
-        return response($route, 303);
+        return response('',204)->header('HX-Trigger', 'BoardListChanged');
     }
 
 }

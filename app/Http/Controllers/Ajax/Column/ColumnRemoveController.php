@@ -88,9 +88,7 @@ class ColumnRemoveController extends Controller
 
         $column->delete();
 
-        $route = route('board', ['board_id' => $board->id]);
-
-        return response($route, 303);
+        return response('',204)->header('HX-Trigger', 'BoardListChanged');
     }
 
 }
