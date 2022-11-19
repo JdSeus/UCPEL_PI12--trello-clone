@@ -22,6 +22,7 @@
                 @endif
 
                 <div class="min-w-[max(250px,calc(100vw-100px))] sm:min-w-[300px] bg-white rounded p-[20px]">
+
                     <div class="flex justify-between">
                         <p class="text-xl font-bold text-gray-700 text-center">
                             {{ $column->title }}
@@ -34,6 +35,18 @@
                                 Remover
                             </a>
                         </div>
+                    </div>
+
+                    @if(isset($column->cards) && count($column->cards))
+                        @foreach($column->cards as $card)
+                        <div class="mx-auto mt-4 block cursor-pointer transition duration-300 text-gray-700 hover:text-blue-500 w-fit p-[5px]">
+                            {{ $card->title }}
+                        </div>
+                        @endforeach
+                    @endif
+
+                    <div class="mx-auto mt-4 block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-green-500 hover:bg-green-700" hx-get="{{ route('ajax.card.create', ['column_id' => $column->id]) }}" hx-target="#js-dialog">
+                        Criar Card
                     </div>
 
                 </div>
