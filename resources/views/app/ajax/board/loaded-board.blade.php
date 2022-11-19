@@ -2,22 +2,24 @@
     @if(isset($board->columns) && count($board->columns))
         @foreach($board->columns as $column)
             <div class="relative ml-[20px] mr-[20px] w-fit">
-                @if ($loop->first)
-                    <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'right']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-0 bg-white">
-                        @include('app.icons.arrow')
-                    </div>
-                @else
-                    @if ($loop->last)
-                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'left']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] left-0 bg-white">
-                            @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
-                        </div>
-                    @else 
-                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'left']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[30px] bg-white">
-                            @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
-                        </div>
-                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'right']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[0] bg-white">
+                @if($loop->count > 1)
+                    @if ($loop->first)
+                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'right']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-0 bg-white">
                             @include('app.icons.arrow')
                         </div>
+                    @else
+                        @if ($loop->last)
+                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'left']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] left-0 bg-white">
+                                @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
+                            </div>
+                        @else 
+                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'left']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[30px] bg-white">
+                                @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
+                            </div>
+                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.column.change-order', ['column_id' => $column->id, 'direction' => 'right']) }}"  class="absolute cursor-pointer block w-[25px] h-[25px] p-[5px] rounded top-[-30px] right-[0] bg-white">
+                                @include('app.icons.arrow')
+                            </div>
+                        @endif
                     @endif
                 @endif
 
@@ -41,25 +43,30 @@
                         @foreach($column->cards as $card)
                         <div class="relative flex mb-4">
                             <div class="flex items-center">
-                                @if ($loop->first)
-                                    <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'bottom']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
-                                        @include('app.icons.arrow', ['class' => 'rotate-[90deg]'])
-                                    </div>
-                                    <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
-                                @else
-                                    @if ($loop->last)
-                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'up']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
-                                            @include('app.icons.arrow', ['class' => 'scale-x-[-1] rotate-[90deg]'])
-                                        </div>
-                                        <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
-                                    @else 
-                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'up']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
-                                            @include('app.icons.arrow', ['class' => 'scale-x-[-1] rotate-[90deg]'])
-                                        </div>
-                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'down']) }}"  class="cursor-pointer ml-[5px] mr-[5px] block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                @if($loop->count > 1)
+                                    @if ($loop->first)
+                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'bottom']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
                                             @include('app.icons.arrow', ['class' => 'rotate-[90deg]'])
                                         </div>
+                                        <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
+                                    @else
+                                        @if ($loop->last)
+                                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'up']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                                @include('app.icons.arrow', ['class' => 'scale-x-[-1] rotate-[90deg]'])
+                                            </div>
+                                            <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
+                                        @else 
+                                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'up']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                                @include('app.icons.arrow', ['class' => 'scale-x-[-1] rotate-[90deg]'])
+                                            </div>
+                                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'down']) }}"  class="cursor-pointer ml-[5px] mr-[5px] block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                                @include('app.icons.arrow', ['class' => 'rotate-[90deg]'])
+                                            </div>
+                                        @endif
                                     @endif
+                                @else 
+                                    <div class="w-[25px] h-[25px]"></div>
+                                    <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
                                 @endif
                             </div>
                             <div class="bg-white pl-[20px] pr-[5px] block p-[5px] w-[100%]">
