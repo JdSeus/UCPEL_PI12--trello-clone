@@ -39,19 +39,44 @@
 
                     @if(isset($column->cards) && count($column->cards))
                         @foreach($column->cards as $card)
-                        <div class="bg-white mb-4 px-[20px] block  p-[5px]">
-                            <div class="flex justify-between">
-                                <p class="cursor-pointer font-bold transition duration-300 text-gray-700 hover:text-blue-500" hx-get="{{ route('ajax.card.edit', $card->id) }}" hx-target="#js-dialog">
-                                    {{ $card->title }}
-                                </p>
-                                <div class="flex">
-                                    <a class="flex items-center rounded-full justify-center w-[25px] h-[25px] text-[12px] ml-[5px] cursor-pointer text-white transition duration-300 bg-red-500 hover:bg-red-700 focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.card.remove', $card->id) }}" hx-target="#js-dialog">
-                                        &#10005;
-                                    </a>
-                                </div>
+                        <div class="relative flex mb-4">
+                            <div class="flex items-center">
+                                @if ($loop->first)
+                                    <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'bottom']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                        @include('app.icons.arrow', ['class' => 'rotate-[90deg]'])
+                                    </div>
+                                    <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
+                                @else
+                                    @if ($loop->last)
+                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'up']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                            @include('app.icons.arrow', ['class' => 'scale-x-[-1] rotate-[90deg]'])
+                                        </div>
+                                        <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
+                                    @else 
+                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'up']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                            @include('app.icons.arrow', ['class' => 'scale-x-[-1] rotate-[90deg]'])
+                                        </div>
+                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'down']) }}"  class="cursor-pointer ml-[5px] mr-[5px] block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                            @include('app.icons.arrow', ['class' => 'rotate-[90deg]'])
+                                        </div>
+                                    @endif
+                                @endif
                             </div>
-                            
+                            <div class="bg-white pl-[20px] pr-[5px] block p-[5px] w-[100%]">
+                                <div class="flex justify-between">
+                                    <p class="cursor-pointer font-bold transition duration-300 text-gray-700 hover:text-blue-500" hx-get="{{ route('ajax.card.edit', $card->id) }}" hx-target="#js-dialog">
+                                        {{ $card->title }}
+                                    </p>
+                                    <div class="flex">
+                                        <a class="flex items-center rounded-full justify-center w-[25px] h-[25px] text-[12px] ml-[5px] cursor-pointer text-white transition duration-300 bg-red-500 hover:bg-red-700 focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.card.remove', $card->id) }}" hx-target="#js-dialog">
+                                            &#10005;
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                            </div>
                         </div>
+
                         @endforeach
                     @endif
 
