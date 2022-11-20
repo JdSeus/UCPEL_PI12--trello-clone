@@ -45,7 +45,7 @@
                             <div class="flex items-center">
                                 @if($loop->count > 1)
                                     @if ($loop->first)
-                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'bottom']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'down']) }}"  class="cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
                                             @include('app.icons.arrow', ['class' => 'rotate-[90deg]'])
                                         </div>
                                         <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
@@ -69,6 +69,7 @@
                                     <div class="w-[25px] h-[25px] ml-[5px] mr-[5px]"></div>
                                 @endif
                             </div>
+
                             <div class="bg-white pl-[20px] pr-[5px] block p-[5px] w-[100%]">
                                 <div class="flex justify-between">
                                     <p class="cursor-pointer font-bold transition duration-300 text-gray-700 hover:text-blue-500" hx-get="{{ route('ajax.card.edit', $card->id) }}" hx-target="#js-dialog">
@@ -80,8 +81,39 @@
                                         </a>
                                     </div>
                                 </div>
-                                
                             </div>
+
+                            @php $lastColumnOrder = $card->last_column @endphp
+                            @if(isset($card->column))
+                                @if($card->column->order == 1)
+                                    <div class="flex items-center">
+                                        <div class="ml-[5px] w-[25px] h-[25px]"></div>
+                                        <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'right']) }}"  class="ml-[5px] cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                            @include('app.icons.arrow')
+                                        </div>
+                                    </div>
+                                @else
+                                    @if($card->column->order == $board->last_column)
+                                        <div class="flex items-center">
+                                            <div class="w-[25px] h-[25px] ml-[5px]"></div>
+                                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'left']) }}"  class="ml-[5px] cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                                @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="flex items-center">
+                                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'left']) }}"  class="ml-[5px] cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                                @include('app.icons.arrow', ['class' => 'scale-x-[-1]'])
+                                            </div>
+                                            <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'right']) }}"  class="ml-[5px] cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">
+                                                @include('app.icons.arrow')
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+
+                            @endif
+
                         </div>
 
                         @endforeach
