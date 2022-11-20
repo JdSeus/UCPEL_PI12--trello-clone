@@ -56,6 +56,39 @@
                 </button>
             </div>
 
+            <p class="text-xl font-bold text-gray-700 text-center mb-4">
+                Comentários
+            </p>
+
+            <div class="mx-auto mb-8 mt-4 block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-green-500 hover:bg-green-700" hx-get="{{ route('ajax.comment.create', ['card_id' => $card->id]) }}" hx-target="#js-dialog">
+                Adicionar Comentário
+            </div>
+
+            @if(isset($card->comments) && count($card->comments))
+                @foreach($card->comments as $comment)
+                    <div class="relative mb-4">
+                        <div class="flex items-center justify-center">
+                            <div class="w-[35px] h-[35px] bg-red-500">
+      
+                            </div>
+                            <div class="ml-[5px]">
+                                @if(isset($comment->client))
+                                    <span class="font-bold text-gray-700">{{ $comment->client->name }}</span> disse em
+                                @else 
+                                    <span class="font-bold text-gray-700">Autor Desconhecido</span> disse em
+                                @endif
+                            </div>
+                            <div class="ml-[5px]">
+                                {{ ''.date('d/m/Y', strtotime($comment->date)); }}:
+                            </div>
+                        </div>
+                        <div class="min-h-[38px] shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            {{ $comment->description }}
+                        </div>
+                    </div>
+                @endforeach                    
+            @endif
+
         </div>
     </div>
 </form>
