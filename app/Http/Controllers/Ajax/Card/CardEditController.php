@@ -120,10 +120,14 @@ class CardEditController extends Controller
 
         $editCardValidator = Validator::make(request()->all(), 
             [
+                'card_date' => ['required', 'string'],
                 'card_title' => ['required', 'string'],
+                'card_description' => ['required', 'string'],
             ],
             [
+                'card_date.required' => 'O campo Data é necessário!',
                 'card_title.required' => 'O campo Título é necessário!',
+                'card_description.required' => 'O campo Descrição é necessário!',
             ]
         );
 
@@ -132,7 +136,9 @@ class CardEditController extends Controller
             return view('app.ajax.card.edit', compact('card'))->withErrors($errors);
         }
 
+        $card->date = ''.$r->card_date;
         $card->title = ''.$r->card_title;
+        $card->description = ''.$r->card_description;
         $card->save();
 
         return response('',204)->header('HX-Trigger', 'BoardListChanged');
