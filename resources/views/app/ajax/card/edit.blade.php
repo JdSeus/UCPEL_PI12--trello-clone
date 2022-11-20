@@ -56,6 +56,14 @@
                 </button>
             </div>
 
+            <p class="text-xl font-bold text-gray-700 text-center mb-4">
+                Comentários
+            </p>
+
+            <div class="mx-auto mt-4 block cursor-pointer text-white w-fit p-[5px] transition duration-300 bg-green-500 hover:bg-green-700" hx-get="{{ route('ajax.comment.create', ['card_id' => $card->id]) }}" hx-target="#js-dialog">
+                Adicionar Comentário
+            </div>
+
         </div>
     </div>
 </form>

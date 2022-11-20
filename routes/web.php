@@ -32,6 +32,7 @@ use App\Http\Controllers\Ajax\Card\CardRemoveController;
 use App\Http\Controllers\Ajax\Card\CardEditController;
 use App\Http\Controllers\Ajax\Card\CardChangeOrderController;
 
+use App\Http\Controllers\Ajax\Comment\CommentCreateController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
@@ -84,6 +85,13 @@ Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
         Route::post('/remove/{card_id}', [CardRemoveController::class, 'post'])->name('remove');
 
         Route::get('/change-order/{card_id}/{direction}', [CardChangeOrderController::class, 'index'])->name('change-order');
+
+    });
+
+    Route::group(['prefix' => 'comment', 'as' => 'comment.'], function () {
+
+        Route::get('/create/{card_id}', [CommentCreateController::class, 'index'])->name('create');
+        Route::post('/create/{card_id}', [CommentCreateController::class, 'post'])->name('create');
 
     });
 
