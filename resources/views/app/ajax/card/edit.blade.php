@@ -67,23 +67,32 @@
             @if(isset($card->comments) && count($card->comments))
                 @foreach($card->comments as $comment)
                     <div class="relative mb-4">
-                        <div class="flex items-center justify-center">
-                            <div class="w-[35px] h-[35px] bg-red-500">
-      
+                        <div class="flex">
+                            <div class="w-[100%]">
+                                <div class="flex items-center justify-center">
+                                    <div class="w-[35px] h-[35px] bg-red-500">
+              
+                                    </div>
+                                    <div class="ml-[5px]">
+                                        @if(isset($comment->client))
+                                            <span class="font-bold text-gray-700">{{ $comment->client->name }}</span> disse em
+                                        @else 
+                                            <span class="font-bold text-gray-700">Autor Desconhecido</span> disse em
+                                        @endif
+                                    </div>
+                                    <div class="ml-[5px]">
+                                        {{ ''.date('d/m/Y', strtotime($comment->date)); }}:
+                                    </div>
+                                </div>
+                                <div class="min-h-[38px] shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                                    {{ $comment->description }}
+                                </div>
                             </div>
-                            <div class="ml-[5px]">
-                                @if(isset($comment->client))
-                                    <span class="font-bold text-gray-700">{{ $comment->client->name }}</span> disse em
-                                @else 
-                                    <span class="font-bold text-gray-700">Autor Desconhecido</span> disse em
-                                @endif
+                            <div class="flex">
+                                <a class="flex self-center items-center rounded-full justify-center w-[20px] h-[20px] text-[10px] ml-[5px] cursor-pointer text-white transition duration-300 bg-red-500 hover:bg-red-700 focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.comment.remove', $comment->id) }}" hx-target="#js-dialog">
+                                    <span class="block leading-none">&#10005;</span>
+                                </a>
                             </div>
-                            <div class="ml-[5px]">
-                                {{ ''.date('d/m/Y', strtotime($comment->date)); }}:
-                            </div>
-                        </div>
-                        <div class="min-h-[38px] shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                            {{ $comment->description }}
                         </div>
                     </div>
                 @endforeach                    
