@@ -43,10 +43,10 @@
                             {{ $message }}
                         </span>
                     @enderror
-                    <textarea required name="card_description" placeholder="" value="{{ $card->description }}"
+                    <textarea required name="card_description"
                     class="h-[120px]
                     shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    ></textarea>
+                    >{{ $card->description }}</textarea>
                 </div>
             </div>
 
@@ -89,6 +89,9 @@
                                 </div>
                             </div>
                             <div class="flex">
+                                <a class="flex self-center items-center rounded-full justify-center px-[5px] h-[20px] text-[10px] ml-[5px] cursor-pointer text-white transition duration-300 bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.comment.edit', $comment->id) }}" hx-target="#js-dialog">
+                                    <span class="block leading-none">Editar</span>
+                                </a>
                                 <a class="flex self-center items-center rounded-full justify-center w-[20px] h-[20px] text-[10px] ml-[5px] cursor-pointer text-white transition duration-300 bg-red-500 hover:bg-red-700 focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.comment.remove', $comment->id) }}" hx-target="#js-dialog">
                                     <span class="block leading-none">&#10005;</span>
                                 </a>
