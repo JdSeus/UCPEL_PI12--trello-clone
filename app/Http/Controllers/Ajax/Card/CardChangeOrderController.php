@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
 use App\Models\Card;
+use App\Models\Column;
 
 class CardChangeOrderController extends Controller
 {
@@ -30,7 +31,7 @@ class CardChangeOrderController extends Controller
             abort(404);
         }
 
-        if(($direction != 'up') && ($direction != 'down')) {
+        if(($direction != 'up') && ($direction != 'down') && ($direction != 'left') && ($direction != 'right')) {
             abort(404);
         }
 
@@ -101,6 +102,62 @@ class CardChangeOrderController extends Controller
 
                 $cardToTheTop->order = $auxOrder;
                 $cardToTheTop->save();  
+            }
+
+            return response('',204)->header('HX-Trigger', 'BoardListChanged');
+
+        } else if ($direction == 'left') {
+            $auxOrder = (int) (''.$card->order);
+            $auxColumnOrder = (int) (''.$card->column->order);
+
+            $columnToTheLeft = Column::where('board_id', $board->id)->where('order', '<', ''.($auxColumnOrder))->orderBy('order', 'desc')->first();
+
+            $cardsToTheDown = Card::where('column_id', $column->id)->where('order', '>', ''.($auxOrder))->orderBy('order')->get();
+
+            if(isset($columnToTheLeft)) {
+
+                foreach($columnToTheLeft->cards as $columnToTheLeftCard) {
+                    $columnToTheLeftCard->order = $columnToTheLeftCard->order + 1;
+                    $columnToTheLeftCard->save();
+                }
+                
+                $card->order = 1;
+                $card->column_id = $columnToTheLeft->id;
+                $card->save();
+            }
+
+            foreach($cardsToTheDown as $cardToTheDown) {
+                $cardToTheDownOrder = (int) (''.$cardToTheDown->order);
+                $cardToTheDown->order = $cardToTheDownOrder - 1;
+                $cardToTheDown->save();
+            }
+
+            return response('',204)->header('HX-Trigger', 'BoardListChanged');
+
+        } else if ($direction == 'right') {
+            $auxOrder = (int) (''.$card->order);
+            $auxColumnOrder = (int) (''.$card->column->order);
+
+            $columnToTheRight = Column::where('board_id', $board->id)->where('order', '>', ''.($auxColumnOrder))->orderBy('order', 'asc')->first();
+
+            $cardsToTheDown = Card::where('column_id', $column->id)->where('order', '>', ''.($auxOrder))->orderBy('order')->get();
+
+            if(isset($columnToTheRight)) {
+
+                foreach($columnToTheRight->cards as $columnToTheRightCard) {
+                    $columnToTheRightCard->order = $columnToTheRightCard->order + 1;
+                    $columnToTheRightCard->save();
+                }
+                
+                $card->order = 1;
+                $card->column_id = $columnToTheRight->id;
+                $card->save();
+            }
+
+            foreach($cardsToTheDown as $cardToTheDown) {
+                $cardToTheDownOrder = (int) (''.$cardToTheDown->order);
+                $cardToTheDown->order = $cardToTheDownOrder - 1;
+                $cardToTheDown->save();
             }
 
             return response('',204)->header('HX-Trigger', 'BoardListChanged');

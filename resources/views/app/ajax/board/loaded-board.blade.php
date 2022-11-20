@@ -83,7 +83,6 @@
                                 </div>
                             </div>
 
-                            @php $lastColumnOrder = $card->last_column @endphp
                             @if(isset($card->column))
                                 @if($card->column->order == 1)
                                     <div class="flex items-center">
@@ -93,7 +92,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    @if($card->column->order == $board->last_column)
+                                    @if($card->column->order == $board->last_column_order)
                                         <div class="flex items-center">
                                             <div class="w-[25px] h-[25px] ml-[5px]"></div>
                                             <div hx-target="#js-dialog" hx-get="{{ route('ajax.card.change-order', ['card_id' => $card->id, 'direction' => 'left']) }}"  class="ml-[5px] cursor-pointer block w-[25px] h-[25px] p-[5px] rounded bg-white">

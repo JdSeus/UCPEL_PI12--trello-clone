@@ -13,7 +13,7 @@ class Board extends Model
 
     protected $table = 'boards';
 
-    public $additional_attributes = ['last_column'];
+    public $additional_attributes = ['last_column_order'];
 
     public function clients()
     {
@@ -25,7 +25,7 @@ class Board extends Model
         return $this->hasMany('App\Models\Column');
     }
 
-    public function getLastColumnAttribute()
+    public function getLastColumnOrderAttribute()
     {
         if(isset($this->id)) {
             $lastColumnOfBoard = Column::where('board_id', $this->id)->orderBy('order', 'desc')->first();
