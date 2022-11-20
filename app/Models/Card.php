@@ -18,7 +18,7 @@ class Card extends Model
 
     public function comments()
     {
-        return $this->hasMany('App\Models\Comment');
+        return $this->hasMany('App\Models\Comment')->orderBy('id', 'desc');
     }
 
 }
