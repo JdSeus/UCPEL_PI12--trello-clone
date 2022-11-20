@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Nov-2022 às 19:57
+-- Tempo de geração: 20-Nov-2022 às 21:37
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -95,13 +95,13 @@ CREATE TABLE `cards` (
 
 INSERT INTO `cards` (`id`, `column_id`, `date`, `title`, `description`, `created_at`, `updated_at`, `order`) VALUES
 (49, 68, '2022-11-20', 'A1', 'Descrição A1', '2022-11-20 18:05:41', '2022-11-20 18:56:04', 1),
-(50, 77, '2022-11-20', 'C3', 'Descrição C3', '2022-11-20 18:05:44', '2022-11-20 18:57:00', 3),
-(51, 76, '2022-11-20', 'B2', 'Descrição B2', '2022-11-20 18:05:47', '2022-11-20 18:56:33', 2),
-(52, 76, '2022-11-20', 'B1', 'Descrição B1', '2022-11-20 18:05:52', '2022-11-20 18:56:25', 1),
+(50, 77, '2022-11-20', 'C3', 'Descrição C3', '2022-11-20 18:05:44', '2022-11-20 20:37:35', 3),
+(51, 76, '2022-11-20', 'B2', 'Descrição B2', '2022-11-20 18:05:47', '2022-11-20 19:36:54', 2),
+(52, 76, '2022-11-20', 'B1', 'Descrição B1', '2022-11-20 18:05:52', '2022-11-20 19:36:54', 1),
 (53, 68, '2022-11-20', 'A2', 'Descrição A2', '2022-11-20 18:05:56', '2022-11-20 18:56:11', 2),
-(54, 77, '2022-11-20', 'C1', 'Descrição C1', '2022-11-20 18:06:02', '2022-11-20 18:56:47', 1),
-(55, 77, '2022-11-20', 'C2', 'Descrição C2', '2022-11-20 18:06:06', '2022-11-20 18:56:54', 2),
-(56, 76, '2022-11-20', 'B3', 'Descrição B3', '2022-11-20 18:06:11', '2022-11-20 18:56:39', 3),
+(54, 77, '2022-11-20', 'C1', 'Descrição C1', '2022-11-20 18:06:02', '2022-11-20 20:37:36', 1),
+(55, 77, '2022-11-20', 'C2', 'Descrição C2', '2022-11-20 18:06:06', '2022-11-20 20:37:36', 2),
+(56, 76, '2022-11-20', 'B3', 'Descrição B3', '2022-11-20 18:06:11', '2022-11-20 19:36:52', 3),
 (57, 68, '2022-11-20', 'A3', 'Descrição A3', '2022-11-20 18:06:16', '2022-11-20 18:56:18', 3);
 
 -- --------------------------------------------------------
@@ -175,8 +175,8 @@ CREATE TABLE `columns` (
 
 INSERT INTO `columns` (`id`, `board_id`, `title`, `created_at`, `updated_at`, `order`) VALUES
 (68, 17, 'Coluna A', '2022-11-19 20:02:32', '2022-11-20 18:02:00', 1),
-(76, 17, 'Coluna B', '2022-11-19 22:10:07', '2022-11-20 18:02:00', 2),
-(77, 17, 'Coluna C', '2022-11-19 22:10:25', '2022-11-20 18:07:10', 3);
+(76, 17, 'Coluna B', '2022-11-19 22:10:07', '2022-11-20 20:37:24', 2),
+(77, 17, 'Coluna C', '2022-11-19 22:10:25', '2022-11-20 20:37:26', 3);
 
 -- --------------------------------------------------------
 
@@ -193,6 +193,21 @@ CREATE TABLE `comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Extraindo dados da tabela `comments`
+--
+
+INSERT INTO `comments` (`id`, `client_id`, `card_id`, `date`, `description`, `created_at`, `updated_at`) VALUES
+(11, 1, 49, '2022-11-20', 'Meu comentário no A1', '2022-11-20 20:35:17', '2022-11-20 20:35:17'),
+(13, 1, 53, '2022-11-20', 'Meu comentário no A2', '2022-11-20 20:35:52', '2022-11-20 20:35:52'),
+(14, 1, 57, '2022-11-20', 'Meu comentário no A3', '2022-11-20 20:36:03', '2022-11-20 20:36:03'),
+(15, 1, 52, '2022-11-20', 'Meu comentário no B1', '2022-11-20 20:36:15', '2022-11-20 20:36:15'),
+(16, 1, 51, '2022-11-20', 'Meu comentário no B2', '2022-11-20 20:36:25', '2022-11-20 20:36:25'),
+(17, 1, 56, '2022-11-20', 'Meu comentário no B3', '2022-11-20 20:36:36', '2022-11-20 20:36:36'),
+(18, 1, 54, '2022-11-20', 'Meu comentário no C1', '2022-11-20 20:36:46', '2022-11-20 20:36:46'),
+(19, 1, 55, '2022-11-20', 'Meu comentário no C2', '2022-11-20 20:36:56', '2022-11-20 20:36:56'),
+(20, 1, 50, '2022-11-20', 'Meu comentário no C3', '2022-11-20 20:37:07', '2022-11-20 20:37:07');
 
 -- --------------------------------------------------------
 
@@ -1104,13 +1119,13 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de tabela `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
 
 --
 -- AUTO_INCREMENT de tabela `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de tabela `data_rows`
