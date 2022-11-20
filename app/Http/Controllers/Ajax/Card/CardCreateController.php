@@ -98,10 +98,14 @@ class CardCreateController extends Controller
 
         $createCardValidator = Validator::make(request()->all(), 
             [
+                'card_date' => ['required', 'string'],
                 'card_title' => ['required', 'string'],
+                'card_description' => ['required', 'string'],
             ],
             [
+                'card_date.required' => 'O campo Data é necessário!',
                 'card_title.required' => 'O campo Título é necessário!',
+                'card_description.required' => 'O campo Descrição é necessário!',
             ]
         );
 
@@ -120,7 +124,9 @@ class CardCreateController extends Controller
         $auxOrder = $auxOrder + 1;
 
         $card = new Card();
+        $card->date = ''.$r->card_date;
         $card->title = ''.$r->card_title;
+        $card->description = ''.$r->card_description;
         $card->column_id = $column->id;
         $card->order = $auxOrder;
         $card->save();
