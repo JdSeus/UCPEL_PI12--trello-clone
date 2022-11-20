@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Nov-2022 às 23:04
+-- Tempo de geração: 20-Nov-2022 às 19:07
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -94,10 +94,15 @@ CREATE TABLE `cards` (
 --
 
 INSERT INTO `cards` (`id`, `column_id`, `date`, `title`, `description`, `created_at`, `updated_at`, `order`) VALUES
-(27, 73, NULL, 'D', NULL, '2022-11-19 22:03:06', '2022-11-19 22:03:44', 4),
-(29, 73, NULL, 'A', NULL, '2022-11-19 22:03:11', '2022-11-19 22:03:17', 1),
-(30, 73, NULL, 'C', NULL, '2022-11-19 22:03:14', '2022-11-19 22:03:45', 3),
-(31, 73, NULL, 'B', NULL, '2022-11-19 22:03:43', '2022-11-19 22:03:45', 2);
+(49, 68, NULL, 'A1', NULL, '2022-11-20 18:05:41', '2022-11-20 18:06:45', 1),
+(50, 77, NULL, 'C3', NULL, '2022-11-20 18:05:44', '2022-11-20 18:07:37', 3),
+(51, 76, NULL, 'B2', NULL, '2022-11-20 18:05:47', '2022-11-20 18:07:41', 2),
+(52, 76, NULL, 'B1', NULL, '2022-11-20 18:05:52', '2022-11-20 18:07:39', 1),
+(53, 68, NULL, 'A2', NULL, '2022-11-20 18:05:56', '2022-11-20 18:06:45', 2),
+(54, 77, NULL, 'C1', NULL, '2022-11-20 18:06:02', '2022-11-20 18:07:37', 1),
+(55, 77, NULL, 'C2', NULL, '2022-11-20 18:06:06', '2022-11-20 18:07:37', 2),
+(56, 76, NULL, 'B3', NULL, '2022-11-20 18:06:11', '2022-11-20 18:07:41', 3),
+(57, 68, NULL, 'A3', NULL, '2022-11-20 18:06:16', '2022-11-20 18:06:42', 3);
 
 -- --------------------------------------------------------
 
@@ -169,9 +174,9 @@ CREATE TABLE `columns` (
 --
 
 INSERT INTO `columns` (`id`, `board_id`, `title`, `created_at`, `updated_at`, `order`) VALUES
-(68, 17, 'Coluna A', '2022-11-19 20:02:32', '2022-11-19 21:21:49', 1),
-(70, 17, 'Coluna C', '2022-11-19 20:02:41', '2022-11-19 21:21:45', 3),
-(73, 17, 'Coluna B', '2022-11-19 20:03:14', '2022-11-19 21:21:49', 2);
+(68, 17, 'Coluna A', '2022-11-19 20:02:32', '2022-11-20 18:02:00', 1),
+(76, 17, 'Coluna B', '2022-11-19 22:10:07', '2022-11-20 18:02:00', 2),
+(77, 17, 'Coluna C', '2022-11-19 22:10:25', '2022-11-20 18:07:10', 3);
 
 -- --------------------------------------------------------
 
@@ -1081,7 +1086,7 @@ ALTER TABLE `board_client`
 -- AUTO_INCREMENT de tabela `cards`
 --
 ALTER TABLE `cards`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT de tabela `categories`
@@ -1099,7 +1104,7 @@ ALTER TABLE `clients`
 -- AUTO_INCREMENT de tabela `columns`
 --
 ALTER TABLE `columns`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de tabela `comments`
