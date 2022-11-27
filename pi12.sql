@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 20-Nov-2022 às 21:37
+-- Tempo de geração: 27-Nov-2022 às 21:22
 -- Versão do servidor: 10.4.22-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -143,16 +143,17 @@ CREATE TABLE `clients` (
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `profile_picture` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `clients`
 --
 
-INSERT INTO `clients` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Teste', 'teste@teste.com', NULL, '$2y$10$r9WuFJpcYVJmDkMlOQdGFeJiNbbbovv0IXPmMIydNkiik9G5SWx/m', NULL, '2022-11-08 23:37:31', '2022-11-08 23:37:31', NULL),
-(2, 'Teste', 'teste1@teste.com', NULL, '$2y$10$8wcEZvX.E3TKo/b2NZ76beizVkwemXnpFTM4I4jPvA1E16LkLxuQm', NULL, '2022-11-12 16:48:43', '2022-11-12 18:08:55', NULL);
+INSERT INTO `clients` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `deleted_at`, `profile_picture`) VALUES
+(1, 'Teste', 'teste@teste.com', NULL, '$2y$10$RKx34TUCYUWhyx4P75hbDOldH/buJV8P83rrhqPCU/RSNpweJE1uK', NULL, '2022-11-08 23:37:31', '2022-11-27 20:22:06', NULL, 'clients/November2022/1669580526.jpg'),
+(2, 'Teste', 'teste1@teste.com', NULL, '$2y$10$8wcEZvX.E3TKo/b2NZ76beizVkwemXnpFTM4I4jPvA1E16LkLxuQm', NULL, '2022-11-12 16:48:43', '2022-11-12 18:08:55', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -318,18 +319,19 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (80, 14, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 9),
 (81, 14, 'comment_belongsto_client_relationship', 'relationship', 'Cliente', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Client\",\"table\":\"clients\",\"type\":\"belongsTo\",\"column\":\"client_id\",\"key\":\"id\",\"label\":\"email\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 3),
 (82, 15, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(83, 15, 'name', 'text', 'Nome', 1, 1, 1, 1, 1, 1, '{}', 2),
-(84, 15, 'email', 'text', 'E-mail', 1, 1, 1, 1, 1, 1, '{}', 3),
-(85, 15, 'email_verified_at', 'timestamp', 'E-mail Verificado em', 0, 0, 0, 1, 1, 1, '{}', 4),
-(86, 15, 'password', 'text', 'Senha', 1, 0, 0, 1, 1, 1, '{}', 5),
-(87, 15, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 1, 1, 1, '{}', 6),
-(88, 15, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 7),
-(89, 15, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 8),
-(90, 15, 'deleted_at', 'timestamp', 'Deletado em', 0, 1, 1, 1, 1, 1, '{}', 9),
+(83, 15, 'name', 'text', 'Nome', 1, 1, 1, 1, 1, 1, '{}', 3),
+(84, 15, 'email', 'text', 'E-mail', 1, 1, 1, 1, 1, 1, '{}', 4),
+(85, 15, 'email_verified_at', 'timestamp', 'E-mail Verificado em', 0, 0, 0, 1, 1, 1, '{}', 5),
+(86, 15, 'password', 'text', 'Senha', 1, 0, 0, 1, 1, 1, '{}', 6),
+(87, 15, 'remember_token', 'text', 'Remember Token', 0, 0, 0, 1, 1, 1, '{}', 7),
+(88, 15, 'created_at', 'timestamp', 'Criado em', 0, 1, 1, 1, 0, 1, '{}', 8),
+(89, 15, 'updated_at', 'timestamp', 'Atualizado em', 0, 0, 0, 0, 0, 0, '{}', 9),
+(90, 15, 'deleted_at', 'timestamp', 'Deletado em', 0, 1, 1, 1, 1, 1, '{}', 10),
 (91, 14, 'card_id', 'text', 'Card', 0, 1, 1, 1, 1, 1, '{}', 4),
 (92, 14, 'comment_belongsto_card_relationship', 'relationship', 'Card', 0, 1, 1, 1, 1, 1, '{\"model\":\"App\\\\Models\\\\Card\",\"table\":\"cards\",\"type\":\"belongsTo\",\"column\":\"card_id\",\"key\":\"id\",\"label\":\"title\",\"pivot_table\":\"board_client\",\"pivot\":\"0\",\"taggable\":\"0\"}', 5),
 (93, 10, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4),
-(94, 13, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4);
+(94, 13, 'order', 'number', 'Ordem', 0, 1, 1, 1, 1, 1, '{}', 4),
+(95, 15, 'profile_picture', 'text', 'Imagem de Perfil', 0, 1, 1, 1, 1, 1, '{}', 2);
 
 -- --------------------------------------------------------
 
@@ -371,7 +373,7 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (12, 'card', 'card', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null}', '2022-11-12 17:45:42', '2022-11-12 17:45:42'),
 (13, 'cards', 'cards', 'Card', 'Cards', NULL, 'App\\Models\\Card', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:47:49', '2022-11-19 21:32:50'),
 (14, 'comments', 'comments', 'Comentário', 'Comentários', NULL, 'App\\Models\\Comment', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 17:57:40', '2022-11-12 18:06:51'),
-(15, 'clients', 'clients', 'Cliente', 'Clientes', NULL, 'App\\Models\\Client', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 18:00:11', '2022-11-12 18:01:57');
+(15, 'clients', 'clients', 'Cliente', 'Clientes', NULL, 'App\\Models\\Client', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2022-11-12 18:00:11', '2022-11-27 20:00:09');
 
 -- --------------------------------------------------------
 
@@ -507,7 +509,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (39, '2022_11_12_143951_create_cards_table', 7),
 (42, '2022_11_12_145421_create_comments_table', 8),
 (43, '2022_11_19_153426_add_order_to_columns_table', 9),
-(44, '2022_11_19_183140_add_order_to_cards_table', 10);
+(44, '2022_11_19_183140_add_order_to_cards_table', 10),
+(45, '2022_11_27_165813_add_profile_picture_to_clients_table', 11);
 
 -- --------------------------------------------------------
 
@@ -1131,7 +1134,7 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT de tabela `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT de tabela `data_types`
@@ -1161,7 +1164,7 @@ ALTER TABLE `menu_items`
 -- AUTO_INCREMENT de tabela `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de tabela `pages`
