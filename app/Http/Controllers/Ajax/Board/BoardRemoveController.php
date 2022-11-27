@@ -56,6 +56,8 @@ class BoardRemoveController extends Controller
             abort(404);
         }
 
+        $board->clients()->detach();
+
         $board->delete();
 
         return redirect()->route('ajax.board.my-boards');
