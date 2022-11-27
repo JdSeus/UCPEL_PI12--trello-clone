@@ -39,6 +39,11 @@ use App\Http\Controllers\Ajax\Comment\CommentEditController;
 
 use App\Http\Controllers\Ajax\NewPassword\NewPasswordController;
 
+use App\Http\Controllers\Ajax\Menu\MenuController;
+
+
+
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -48,6 +53,12 @@ Route::post('/editar-perfil', [EditProfileController::class, 'post'])->name('edi
 Route::get('/quadro/{board_id}', [BoardController::class, 'index'])->name('board');
 
 Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
+
+    Route::group(['prefix' => 'menu', 'as' => 'menu.'], function () {
+
+        Route::get('/show', [MenuController::class, 'index'])->name('show');
+
+    });
 
     Route::group(['prefix' => 'new-password', 'as' => 'new-password.'], function () {
 
