@@ -1,6 +1,16 @@
 <section class="min-h-[100vh] max-w-[100vw] pt-[calc(108px+50px)] bg-gray-400 overflow-x-scroll">
 
-    <div class="mx-auto w-fit">
+    <div class="absolute mx-auto w-fit top-[20px] left-[20px] lg:left-auto lg:top-[20px] lg:right-[20px]">
+        <div class="min-w-[300px] bg-white rounded p-[20px]">
+    
+            <p class="cursor-pointer select-none text-xl font-bold text-gray-700 text-center transition duration-300 hover:text-blue-600" hx-get="{{ route('ajax.menu.show') }}" hx-target="#js-dialog">
+                Menu
+            </p>
+    
+        </div>
+    </div>
+
+    <div class="mx-auto w-fit mb-[50px] lg:mb-0">
         <div class="min-w-[300px] lg:min-w-[720px] bg-white rounded p-[20px]">
     
             <p class="text-xl font-bold text-gray-700 text-center mb-4">
@@ -8,7 +18,7 @@
             </p>
 
             <form method="POST" action="{{ route('edit-profile') }}" enctype="multipart/form-data">
-                <div class="flex mt-8">
+                <div class="flex flex-col lg:flex-row mt-8">
                     <div class="flex-1">
                         <div class="lg:pr-[20px] relative">
                             @if (isset($client->profile_picture))
@@ -29,7 +39,7 @@
                                     }
                                 @endphp
                                 @if (isset($messages) && empty($messages->all()) == false)
-                                    <div class="mb-4">
+                                    <div class="mb-4 mt-4 lg:mt-0">
                                         @foreach ($messages->all() as $message)
                                         <span class="block text-green-500 text-sm font-bold">
                                             {{ $message }}
@@ -37,7 +47,7 @@
                                         @endforeach
                                     </div>
                                 @endif
-                                <div class="mb-4">
+                                <div class="mt-4 lg:mt-0 mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name">Nome</label>
                                     <div>
                                         @error('name')
