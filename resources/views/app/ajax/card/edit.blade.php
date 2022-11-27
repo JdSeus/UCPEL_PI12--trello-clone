@@ -70,8 +70,12 @@
                         <div class="flex">
                             <div class="w-[100%]">
                                 <div class="flex items-center justify-center">
-                                    <div class="w-[35px] h-[35px] bg-red-500">
-              
+                                    <div class="relative w-[35px] h-[35px]">
+                                        @if (isset($comment->client->profile_picture))
+                                            <img class="block pointer-events-none aspect-square w-[100%]" src="{{ Voyager::image($comment->client->profile_picture) }}" alt="Imagem de Perfil">
+                                        @else 
+                                            <img class="block cursor-pointer aspect-square w-[100%]" src="{{ asset('images/person.png') }}" alt="Imagem de Perfil">
+                                        @endif
                                     </div>
                                     <div class="ml-[5px]">
                                         @if(isset($comment->client))
