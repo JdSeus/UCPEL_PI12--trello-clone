@@ -843,6 +843,9 @@ video {
 .max-w-\[100vw\]{
   max-width: 100vw;
 }
+.flex-1{
+  flex: 1 1 0%;
+}
 .rotate-\[90deg\]{
   --tw-rotate: 90deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
@@ -1333,6 +1336,9 @@ html {
 }
 
 @media (min-width: 1024px){
+  .lg\:min-w-\[720px\]{
+    min-width: 720px;
+  }
   .lg\:px-8{
     padding-left: 2rem;
     padding-right: 2rem;
