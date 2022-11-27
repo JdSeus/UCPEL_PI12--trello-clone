@@ -60,7 +60,7 @@
                                     >
                                 </div>
                             </div>
-                            <div class="mb-8 w-fit cursor-pointer transition duration-300 bg-slate-500 hover:bg-gray-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" {{--hx-get="#" hx-target="#js-dialog"--}}>
+                            <div class="mb-8 w-fit cursor-pointer transition duration-300 bg-slate-500 hover:bg-gray-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" hx-get="{{ route('ajax.new-password.edit') }}" hx-target="#js-dialog">
                                 Trocar Senha
                             </div>
                             <div class="flex justify-center mb-4">

@@ -39,6 +39,10 @@ class EditProfileController extends Controller
 
         $client = Auth::guard('client')->user();
 
+        if(!isset($client)) {
+            abort(403);
+        }
+
         return view('app.edit-profile', compact('client'));
     }
 
