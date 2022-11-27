@@ -5405,8 +5405,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__() {
   var profileImage = document.querySelector('#js-profile-picture');
   var imageInput = document.querySelector('#js-image-input');
-  if (typeof imageInput != 'undefined') {
-    if (typeof profileImage != 'undefined') {
+  if (typeof imageInput != 'undefined' && imageInput !== null) {
+    if (typeof profileImage != 'undefined' && profileImage !== null) {
       imageInput.addEventListener("change", function (evt) {
         var file = evt.target.files[0];
         console.log(file);
