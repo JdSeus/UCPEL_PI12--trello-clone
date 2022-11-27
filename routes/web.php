@@ -37,6 +37,8 @@ use App\Http\Controllers\Ajax\Comment\CommentCreateController;
 use App\Http\Controllers\Ajax\Comment\CommentRemoveController;
 use App\Http\Controllers\Ajax\Comment\CommentEditController;
 
+use App\Http\Controllers\Ajax\NewPassword\NewPasswordController;
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -46,6 +48,13 @@ Route::post('/editar-perfil', [EditProfileController::class, 'post'])->name('edi
 Route::get('/quadro/{board_id}', [BoardController::class, 'index'])->name('board');
 
 Route::group(['prefix' => 'ajax', 'as' => 'ajax.'], function () {
+
+    Route::group(['prefix' => 'new-password', 'as' => 'new-password.'], function () {
+
+        Route::get('/edit', [NewPasswordController::class, 'index'])->name('edit');
+        Route::post('/edit', [NewPasswordController::class, 'post'])->name('edit');
+
+    });
     
     Route::group(['prefix' => 'board', 'as' => 'board.'], function () {
 
