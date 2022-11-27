@@ -14,12 +14,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\MessageBag;
 
+use Illuminate\Support\Facades\Hash;
+
 use Carbon\Carbon;
 
-use App\Models\Board;
-use App\Models\Column;
-use App\Models\Card;
-use App\Models\Comment;
+use App\Models\Client;
 
 class NewPasswordController extends Controller
 {
@@ -42,9 +41,6 @@ class NewPasswordController extends Controller
 
     public function post(Request $r)
     {
-
-        return view('app.ajax.dump', ['request' => $r]);
-
         if (!Auth::guard('client')->check()) {
             abort(403);
         }
@@ -54,6 +50,28 @@ class NewPasswordController extends Controller
         if(!isset($client)) {
             abort(403);
         }
+
+        $errors = new MessageBag();
+        $messages = new MessageBag();
+
+        $newPasswordValidator = Validator::make(request()->all(), [
+            'password' => ['string', 'min:8', 'required'],
+            'password_confirmation' => ['string', 'min:8', 'required', 'same:password'],
+        ]);
+
+        if ($newPasswordValidator->fails()) {
+            $errors = Helper::addErrorsOfValidatorToErrorBag($newPasswordValidator, $errors);
+            return view('app.ajax.new-password.edit', compact('client'))->withErrors($errors);
+        } else {
+            $client->password = Hash::make($r->password);
+            $client->save();
+            $messages->add('change_password_success', 'Senha trocada com sucesso.');
+            $r->session()->flash('messages', $messages);
+        }
+
+        $route = route('edit-profile');
+
+        return response($route, 303);
 
     }
 
