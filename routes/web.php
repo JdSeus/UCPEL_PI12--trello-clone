@@ -41,6 +41,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/editar-perfil', [EditProfileController::class, 'index'])->name('edit-profile');
+Route::post('/editar-perfil', [EditProfileController::class, 'post'])->name('edit-profile');
 
 Route::get('/quadro/{board_id}', [BoardController::class, 'index'])->name('board');
 
