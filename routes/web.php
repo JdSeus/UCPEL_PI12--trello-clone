@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BoardController;
+use App\Http\Controllers\EditProfileController;
 
 use App\Http\Controllers\Ajax\Board\LoadBoardController;
 use App\Http\Controllers\Ajax\Board\MyBoardsController;
@@ -38,6 +39,9 @@ use App\Http\Controllers\Ajax\Comment\CommentEditController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/editar-perfil', [EditProfileController::class, 'index'])->name('edit-profile');
+Route::post('/editar-perfil', [EditProfileController::class, 'post'])->name('edit-profile');
 
 Route::get('/quadro/{board_id}', [BoardController::class, 'index'])->name('board');
 
