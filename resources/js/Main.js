@@ -4,6 +4,7 @@ import General from './views/General.js';
 import Components from './components/Components.js';
 
 import Home from './views/Home.js';
+import EditProfile from './views/EditProfile.js';
 
 export default class Main { 
 
@@ -16,6 +17,7 @@ export default class Main {
     Components();
 
     Home();
+    EditProfile();
   }
 
 }

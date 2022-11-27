@@ -60,6 +60,8 @@ class EditProfileController extends Controller
 
         $errors = new MessageBag();
 
+        $messages = new MessageBag();
+
         $editProfileValidator = Validator::make(request()->all(), 
             [
                 'name' => ['required', 'string'],
@@ -74,6 +76,26 @@ class EditProfileController extends Controller
         if ($editProfileValidator->fails()) {
             $errors = Helper::addErrorsOfValidatorToErrorBag($editProfileValidator, $errors);
             return redirect()->route('edit-profile', compact('client'))->withErrors($errors);
+        }
+
+        if ($r->hasFile('image')) {
+            if ($r->file('image')->isValid()) {
+                $nameForPicture = new \DateTime();
+                $nameForPicture = $nameForPicture->getTimestamp();
+
+                $myPictureAbsolutePath = Helper::UploadImageFromFileAsVoyagerViaModelSlugUsingName($r->file('image'), 'clients', ''.$nameForPicture);
+
+                if ((isset($myPictureAbsolutePath)) && (empty($myPictureAbsolutePath) == false)) {
+                    if (isset($client->profile_picture)) {
+                        Helper::removeProfilePicture($client->profile_picture);
+                    }
+                    $client->profile_picture = $myPictureAbsolutePath;
+                    $messages->add('change_profile_picture_succes', 'Imagem de perfil trocada com sucesso.');
+                } else {
+                    $errors->add('change_profile_picture_error', 'Não foi possível trocar a imagem de perfil.');
+                }
+                $client->save();
+            }
         }
 
         $changeName = false;
@@ -109,12 +131,9 @@ class EditProfileController extends Controller
             $client->email = ''.$r->email;
         }
 
-
         if($changeName || $changeEmail) {
             $client->save();
         }
-
-        $messages = new MessageBag();
 
         if($changeName) {
             $messages->add('change_name_success', 'Nome trocado com sucesso.');
