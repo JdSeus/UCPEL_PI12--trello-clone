@@ -31,7 +31,7 @@
                                     >
                                 </div>
                             </div>
-                            <div class="mb-4">
+                            <div class="mb-8">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="client_email">E-mail</label>
                                 <div>
                                     @error('client_email')
@@ -44,6 +44,9 @@
                                     shadow-bootstrap appearance-none border border-solid border-coolgray rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     >
                                 </div>
+                            </div>
+                            <div class="mb-8 w-fit cursor-pointer transition duration-300 bg-slate-500 hover:bg-gray-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline" {{--hx-get="#" hx-target="#js-dialog"--}}>
+                                Trocar Senha
                             </div>
                             <div class="flex justify-center mb-4">
                                 <button type="submit" class="w-fit transition duration-300 bg-green-500 hover:bg-green-700 text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline">
